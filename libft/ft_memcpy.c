@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 18:07:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/05/27 18:45:43 by houazzan         ###   ########.fr       */
+/*   Created: 2021/11/03 10:16:07 by houazzan          #+#    #+#             */
+/*   Updated: 2021/11/15 19:29:45 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
+#include "libft.h"
 
-# define MINISHELL_H
+void	*ft_memcpy(void	*dst, const void *src, size_t n)
+{
+	char	*a;
+	char	*b;
 
-# include	<stdio.h>
-# include	<stdlib.h>
-# include	<string.h>
-# include	<readline/readline.h>
-# include	<readline/history.h>
-# include	"../libft/libft.h"
-
-
-#endif
+	a = (char *) dst;
+	b = (char *) src;
+	if (!dst && !src)
+		return (0);
+	while (n > 0)
+	{
+		*a++ = *b++;
+		n--;
+	}
+	return (dst);
+}

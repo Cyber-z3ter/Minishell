@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/05/27 19:00:19 by houazzan         ###   ########.fr       */
+/*   Created: 2021/11/06 20:53:54 by houazzan          #+#    #+#             */
+/*   Updated: 2021/11/15 19:28:51 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	*command;
+	unsigned char	*c_s;
+	unsigned char	c_c;
+	size_t			i;
 
-	while (1)
+	if (n == 0)
+		return (0);
+	c_s = (unsigned char *) s;
+	c_c = (unsigned char) c;
+	i = 0;
+	while (i < n)
 	{
-		command = readline("> ");
-		if (command == NULL || !ft_strncmp(command, "exit", 4))
+		if (c_s[i] == c_c)
 		{
-			printf("exit");
-			exit (0);
+			return (&c_s[i]);
 		}
-		else if (command[0] != '\0')
-			add_history(command);
-		free (command);
+		i++;
 	}
 	return (0);
 }
