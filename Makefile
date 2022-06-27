@@ -1,10 +1,27 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/06/25 13:56:52 by aouhadou          #+#    #+#              #
+#    Updated: 2022/06/26 16:37:35 by aouhadou         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc 
 
-FLAGS = -Wall -Wextra -Werror -lreadline 
+FLAGS = -Wall -Wextra -Werror
 
 SRCF = sources/
 
-SRC  = minishell.c 
+SRC  = minishell.c checker.c list_utils.c lis_utils2.c \
+	tokenizer.c toknizer_utils.c \
+	syntax_validation.c \
+	cmd_list_utils.c parser.c parser_utils.c \
+	expander.c expander_utils.c files_creation.c \
+	files_creation_utils.c heredoc_utils.c signals.c \
 
 SRCP = $(addprefix $(SRCF), $(SRC))
 
@@ -15,12 +32,12 @@ NAME = minishell
 all  :$(NAME)
 
 $(NAME) : $(OBJ) 
-		@$(CC) $(FLAGS) ./libft/libft.a $(OBJ) -o $(NAME)
+		@$(CC) $(FLAGS) ./libft/libft.a $(OBJ) -o $(NAME) -lreadline -L$(shell brew --prefix readline)/lib
 		@echo "$(GREEN) " MINISHELL DONE" $(RESET)\n"
 
 %.o : %.c includes/minishell.h
 	@make -C ./libft
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@ 
 	@echo "$(CHANGE)$(GREEN)∰$(RESET)\c"
 
 clean :
