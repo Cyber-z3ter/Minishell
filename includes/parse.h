@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:02 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/28 10:55:08 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:16:16 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void				open_files(t_command *node);
 // herduq
 char				*ft_strjoin_1(char *s1, char *s2);
 void				create_delimters(t_command *node, int *i);
+
+//Remove unused arrays
+
+void    ft_remove_unsed(t_command *node);
 
 //signals
 void				handle_sig(int sig);

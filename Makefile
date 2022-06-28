@@ -12,7 +12,7 @@ E_SRC  = execute.c useful/quite.c useful/free_list.c useful/exec_utiles.c useful
 	   
 	   
 P_SRC  =  minishell.c checker.c list_utils.c lis_utils2.c tokenizer.c toknizer_utils.c syntax_validation.c cmd_list_utils.c parser.c parser_utils.c \
-	      expander.c expander_utils.c files_creation.c files_creation_utils.c heredoc_utils.c signals.c \
+	      expander.c expander_utils.c files_creation.c files_creation_utils.c heredoc_utils.c signals.c remove_unused_tab.c\
 
 
 PARSE = $(addprefix $(PARSE_FILES), $(P_SRC))
@@ -29,11 +29,11 @@ all  :$(NAME)
 $(NAME) : $(P_OBJ) $(E_OBJ)
 		@make -C ./libft
 		@make bonus -C ./libft
-		@$(CC) $(FLAGS) ./libft/libft.a $(P_OBJ) $(E_OBJ) -o $(NAME)
+		@$(CC) $(FLAGS) ./libft/libft.a $(P_OBJ) $(E_OBJ) -o $(NAME) -lreadline -L$(shell brew --prefix readline)/lib
 		@echo "\n \n$(GREEN)$(TAB)$(TAB)"CREATED" $(RESET)"
 
 %.o : %.c includes/minishell.h  libft/libft.h
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
 
 clean :
 		@rm -rf $(E_OBJ) $(P_OBJ)
