@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/06/28 19:14:55 by aouhadou         ###   ########.fr       */
-=======
-/*   Updated: 2022/06/28 14:41:12 by houazzan         ###   ########.fr       */
->>>>>>> 8057c3a515dab0d19ecd27d0bdaecec61d0046ad
+/*   Updated: 2022/06/28 19:54:50 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +73,14 @@ t_command	*parser(char *line)
 	open_files(cmd_list);
 	ft_remove_unsed(cmd_list);
 	if (!remove_quotes(cmd_list))
-<<<<<<< HEAD
 		print_error(list);
-=======
+
 	{
 		// clear_cmds(&cmd_list);
 		// print_error(list);
 		// return (NULL);
 	}
->>>>>>> 8057c3a515dab0d19ecd27d0bdaecec61d0046ad
+
 	return (cmd_list);
 }
 
@@ -109,13 +104,9 @@ void	ft_prompt(void)
 		if (command_checker(command))
 			break;
 		cmds = parser(command);
-<<<<<<< HEAD
 		// display(cmds);
 		execute(cmds);
-=======
-		execute(cmds);
 		//  display(cmds);
->>>>>>> 8057c3a515dab0d19ecd27d0bdaecec61d0046ad
 		free (command);
 	}
 }

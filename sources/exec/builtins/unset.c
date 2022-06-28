@@ -10,53 +10,53 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-//#include "../../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 
-// int      remove_variable(t_list *command_list, t_env *env_list)
-// {
-// 	t_env *ptr_del;
-// 	t_env *ptr;
+int      remove_variable(char *remove)
+{
+	t_env *ptr_del;
+	t_env *ptr;
 
-// 	if (env_list == NULL)
-// 		return (0);
-// 	ptr = env_list;
-// 	while(ptr != NULL)
-// 	{
-// 		if ((ptr->next) && ft_strcmp(ptr->next->key, command_list->content) == 0)
-// 		{
-// 			ptr_del = ptr->next;
-// 			if (ptr->next->next != NULL)
-// 				ptr = ptr->next->next;
-// 			else
-// 				ptr->next = NULL;
-// 			free(ptr_del);
-// 		}
-// 		ptr = ptr->next;
-// 	}
-// 	return (1);
-// }
+	ptr = g_msh.dup_envp;
+	if (ptr == NULL)
+		return (0);
+	while(ptr != NULL)
+	{
+		if ((ptr->next) && ft_strcmp(ptr->next->key, remove) == 0)
+		{
+			printf("here\n");
+			ptr_del = ptr->next;
+			if (ptr->next->next != NULL)
+				ptr = ptr->next->next;
+			else
+				ptr->next = NULL;
+			free(ptr_del);
+		}
+		ptr = ptr->next;
+	}
+	return (0);
+}
 
-// void    unset(t_list *command_list, t_env *env_list)
-// {
-// 	int i;
+int    unset()
+{
+	int i;
+	int j;
 
-// 	i = 0;
-// 	command_list = command_list->next;
-// 	while (command_list != NULL)
-// 	{
-// 		while (command_list->content[i])
-// 		{
-// 			if (!ft_isalnum(command_list->content[i]) && command_list->content[i] != '_')
-// 			{
-// 				ft_error(command_list->content, INVALID, "unset");
-// 				break;
-// 			}
-// 			i++;
-// 		}
-// 		remove_variable(command_list, env_list);      
-// 		command_list = command_list->next;
-// 	}
-// }
+	i = 1;
+	
+	while (g_msh.cmd->cmd[i] != NULL)
+	{
+		j = 0;
+		while (g_msh.cmd->cmd[j])
+		{
+			if (!ft_isalnum(g_msh.cmd->cmd[i][j]) && g_msh.cmd->cmd[i][j] != '_')
+				quit_minishell(EXIT_FAILURE, ft_strjoin(ft_strjoin("unset: ", g_msh.cmd->cmd[i]), ": not a valid identifier"));
+			i++;
+		}
+		remove_variable(g_msh.cmd->cmd[i]);      
+		i++;
+	 }
+	return(0);
+}
 
-// ! Frees the data in the pointer and sets the pointer to null

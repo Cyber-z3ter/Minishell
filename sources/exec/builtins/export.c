@@ -16,19 +16,22 @@
 
 int	loop_over_env(int  add_to, char **table)
 {
-	t_env *ptr;
+	t_env	*ptr;
+	int		i;
+	int		j;
 
 	ptr = g_msh.dup_envp;
+	i = ft_strlen(table[0]);
 	while (ptr != NULL)
 	{
-		if (ft_strncmp(table[0], ptr->key, ft_strlen(table[0])) == 0)
+		if (ft_strncmp(table[0], ptr->key, i) == 0 && (i == ft_strlen(ptr->key)))
 		{
-			if (table[0] == 0 && add_to == 0)
-				break ;
-			if (add_to == 1)
+			if (add_to == 1 && table[1])
 				ptr->value = ft_strjoin(ptr->value, table[1]);
-			else
+			else if (table[1])
 				ptr->value = ft_strdup(table[1]);
+			else
+				ptr->value = "\0";
 			return(1);
 		}
 		ptr = ptr->next;
@@ -62,8 +65,6 @@ void	invalid_vn(char	*table)
 	int i;
 	
 	i = 1;
-	// if (table[0] == 0)
-	// 	table[0] = '=';
 	if (ft_strlen(ft_strchr(table, '+')) >  1 || !ft_isalpha(table[0]) && table[0] != '_')
 		quit_minishell(EXIT_FAILURE, ft_strjoin(ft_strjoin("export ", table)," : not a valid identifier"));
 	while (table[i])
@@ -87,7 +88,7 @@ int	export_vname()
 	int 	i;
 
 	i = 1;
-	while (g_msh.cmd->cmd[i] != NULL)
+	while (g_msh.cmd->cmd[i] != NULL) // ~ cheack if g_smh.cmd.cmd[i] has no = and it is already in the list don't do any thing
 	{
 		table = ft_sp_split(g_msh.cmd->cmd[i], '=');
 		invalid_vn(table[0]);
@@ -113,8 +114,7 @@ int	export()
 	else
 		if (export_vname())
 			quit_minishell(EXIT_FAILURE, "variable name undefined");
-	//data_management(NULL, NO_ENV, NULL);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 

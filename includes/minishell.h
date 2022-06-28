@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:07:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/28 19:02:36 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/28 20:25:01 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int     env(int state);
 void	free_env(t_list *env_list);
 int		cd();
 int		export();
-void	unset(t_list *command_list, t_list *env_list);
+int 	unset();
 void	exec(char *command_list, t_list *env_list);
 void	add_back(t_list **head, t_list *new_node);
 void	status(int status);
