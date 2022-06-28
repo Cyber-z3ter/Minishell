@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 13:19:48 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/28 11:05:33 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:14:59 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,16 @@ typedef struct dollar
 	char		*buff;
 }	t_info;
 
+// ~ ******************** REMOVE UNUSED ARRAYS ************************* ~ \\
+
+typedef struct unsed
+{
+	int 	count;
+	int		total;
+	char	**tab;
+	int		i;
+	int		j;	
+} t_remove;
 
 // ~ ********************* 🅶🅻🅾🅱🅰🅻 🆂🆃🆁🆄🅲🆃 *********************** ~ \\
 
