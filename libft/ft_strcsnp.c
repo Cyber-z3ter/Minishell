@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lis_utils2.c                                       :+:      :+:    :+:   */
+/*   ft_strcsnp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 16:34:59 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/27 15:49:11 by aouhadou         ###   ########.fr       */
+/*   Created: 2022/06/06 16:37:07 by houazzan          #+#    #+#             */
+/*   Updated: 2022/06/06 16:37:54 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	lstsize2(t_command *lst)
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	int			i;
-	t_command	*new;
+	size_t i;
+	size_t i2;
 
-	new = lst;
 	i = 0;
-	while (new != NULL)
+	i2 = 0;
+	while (s[i] != '\0')
 	{
+		i2 = 0;
+		while (reject[i2] != '\0')
+		{
+			if (s[i] == reject[i2])
+				return (i);
+			i2++;
+		}
 		i++;
-		new = new->next;
 	}
-	return (i);
-}
-
-int	lstsize(t_token *lst)
-{
-	int		i;
-	t_token	*new;
-
-	new = lst;
 	i = 0;
-	while (new != NULL)
-	{
+	while (s[i] != '\0')
 		i++;
-		new = new->next;
-	}
 	return (i);
 }

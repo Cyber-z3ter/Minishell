@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   toknizer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:47 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/25 13:56:48 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/06/28 10:51:35 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	remove_all_chars(char *str, char c)
 {

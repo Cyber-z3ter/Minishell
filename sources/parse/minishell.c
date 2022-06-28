@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/27 16:05:46 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:36:09 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void display(t_command *node) {
 
@@ -24,8 +24,8 @@ void display(t_command *node) {
 		i = 0;
 		while (tmp->cmd[i])
 		{
-			//if (tmp->cmd[i][0] != 0)
-			printf("{%s} => |%d| => oufilefile: [%d] => infile [%d]\n", tmp->cmd[i], tmp->herdoc, tmp->outfile, tmp->infile);
+			if (tmp->cmd[i][0] != 0)
+				printf("{%s} => |%d| => oufilefile: [%d] => infile [%d]\n", tmp->cmd[i], tmp->herdoc, tmp->outfile, tmp->infile);
 			i++;
 		}
 		if (tmp->herdoc == 1)
@@ -102,7 +102,8 @@ void	ft_prompt(void)
 		if (command_checker(command))
 			break;
 		cmds = parser(command);
-		display(cmds);
+		// execute(cmds);
+		//  display(cmds);
 		free (command);
 	}
 }
@@ -112,10 +113,12 @@ void	ft_prompt(void)
 /* **************************************************** */
 
 
-int	main(void)
+int	main(int ac, char **av, char **env)
 {
 	signal(SIGINT, handle_sig);
 	signal(SIGQUIT, handle_sig);
+	ft_bzero(&g_msh, sizeof(g_msh));
+	data_management(NULL ,ENV, env);
 	ft_prompt();
 	return (0);
 }

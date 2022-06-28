@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   files_creation_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:06 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/27 15:51:07 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/06/28 10:50:57 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	ft_free(char *s1, char *s2)
 {
