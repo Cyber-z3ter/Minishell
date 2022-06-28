@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:07:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/28 17:23:52 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:02:36 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void        run_builtins();
 void	    get_env(char **env);
 int         ft_env_size(t_env *env);
 t_env	    *create_env_node(char **env);
-void	add_env_back(t_env **head, t_env *new_node);
+void	    add_env_back(t_env **head, t_env *new_node);
 
 
 

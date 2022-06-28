@@ -89,8 +89,7 @@ int	export_vname()
 	i = 1;
 	while (g_msh.cmd->cmd[i] != NULL)
 	{
-		table = ft_fo_split(g_msh.cmd->cmd[i], '=');
-		printf("%s\n", table[1]);
+		table = ft_sp_split(g_msh.cmd->cmd[i], '=');
 		invalid_vn(table[0]);
 		if (already_exist(table))
 		{
