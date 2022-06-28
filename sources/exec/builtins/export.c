@@ -14,89 +14,94 @@
 #include "../../../includes/minishell.h"
 
 
-// int already_exist(t_list *command_list, t_env *env_list)
-// {
-// 	int add_to;
+int	loop_over_env(int  add_to, char **table)
+{
+	t_env *ptr;
 
-// 	add_to = 0;
-// 	if (ft_strchr(command_list->content, '+'))
-// 	{
-// 		command_list->content = ft_strtrim(command_list->content, "+");
-// 		add_to = 1;
-// 	}
-// 	while (env_list != NULL)
-// 	{
-// 		if (ft_strcmp(command_list->content, env_list->key) == 0)
-// 		{
-// 			command_list = command_list->next;
-// 			if (command_list->content[0] == '\0' && add_to == 0)
-// 				return(0);
-// 			if (add_to == 1)
-// 			{
-// 				if (ft_strlen(ft_strchr(command_list->content, '=')) ==  1)
-// 					return (0);
-// 				env_list->value = ft_strjoin(env_list->value, command_list->content);
-// 			}
-// 			else
-// 				env_list->value = ft_strdup(command_list->content);
-// 			return(0);
-// 		}
-// 		env_list = env_list->next;
-// 	}
-// 	return (1);
-// }
+	ptr = g_msh.dup_envp;
+	while (ptr != NULL)
+	{
+		if (ft_strncmp(table[0], ptr->key, ft_strlen(table[0])) == 0)
+		{
+			if (table[0] == 0 && add_to == 0)
+				break ;
+			if (add_to == 1)
+				ptr->value = ft_strjoin(ptr->value, table[1]);
+			else
+				ptr->value = ft_strdup(table[1]);
+			return(1);
+		}
+		ptr = ptr->next;
+	}
+	return(0);
+}
+
+
+
+int already_exist(char **table)
+{
+	int add_to;
+
+	add_to = 0;
+	if (ft_strchr(table[0], '+'))
+	{
+		table[0] = ft_strtrim(table[0], "+");
+		add_to = 1;
+	}
+	if (!loop_over_env(add_to, table))
+		return(1);
+	return (0);
+}
 
 /* **************************************************** */
 /*                  🅸🅽🆅🅰🅻🅸🅳_🆅🅽                    */
 /* **************************************************** */
 
-// int	invalid_vn(char	*table)
-// {
-// 	int i;
+void	invalid_vn(char	*table)
+{
+	int i;
 	
-// 	i = 1;
-// 	if (ft_strlen(ft_strchr(table, '+')) >  1 || !ft_isalpha(table[0]) && table[0] != '_')
-// 		quit_minishell(EXIT_FAILURE, ft_strjoin(ft_strjoin("export", table),": not a valid identifier"));
-// 	while (table[i])
-// 	{
-// 		if (!ft_isdigit(table[i]) && !ft_isalpha(table[i]) && table[i] != '_')
-// 			quit_minishell(EXIT_FAILURE, ft_strjoin(ft_strjoin("export", table),": not a valid identifier"));
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	i = 1;
+	// if (table[0] == 0)
+	// 	table[0] = '=';
+	if (ft_strlen(ft_strchr(table, '+')) >  1 || !ft_isalpha(table[0]) && table[0] != '_')
+		quit_minishell(EXIT_FAILURE, ft_strjoin(ft_strjoin("export ", table)," : not a valid identifier"));
+	while (table[i])
+	{
+		if (!ft_isdigit(table[i]) && !ft_isalpha(table[i]) && table[i] != '_' && table[i] != '+')
+			quit_minishell(EXIT_FAILURE, ft_strjoin(ft_strjoin("export ", table),": not a valid identifier"));
+		i++;
+	}
+}
 
 
-// // /* **************************************************** */
-// // /*                 🅴🆇🅿🅾🆁🆃_🆅🅽🅰🅼🅴                  */
-// // /* **************************************************** */
+/* **************************************************** */
+/*                 🅴🆇🅿🅾🆁🆃_🆅🅽🅰🅼🅴                  */
+/* **************************************************** */
 
 
-// int	export_vname()
-// {
-// 	char 	**table;
-// 	t_env 	*node;
-// 	int 	i;
+int	export_vname()
+{
+	char 	**table;
+	t_env 	*node;
+	int 	i;
 
-// 	i = 1;
-// 	table = ft_fo_split(g_msh.cmd[0], '=');
-// 	while (command_list != NULL)
-// 	{
-// 		invalid_vn(table[0]);
-// 	// 	{
-// 	// 		if (already_exist(command_list, env_list))
-// 	// 		{
-// 	// 			node = create_node(table);
-// 	// 			add_back(&env_list, node);
-// 	// 		}
-// 	// 		free(table);
-// 	// 		command_list = command_list->next;
-// 	// 	}
-// 	// 	else
-// 	// 		return (1);
-// 	// }
-// 	 return (0);
-// }
+	i = 1;
+	while (g_msh.cmd->cmd[i] != NULL)
+	{
+		table = ft_fo_split(g_msh.cmd->cmd[i], '=');
+		printf("%s\n", table[1]);
+		invalid_vn(table[0]);
+		if (already_exist(table))
+		{
+			node = create_env_node(table);
+			add_env_back(&g_msh.dup_envp, node);
+		}
+		free(table);
+		i++;
+	}
+	return (0);
+}
 
 /* **************************************************** */
 /*                    🅴🆇🅿🅾🆁🆃                        */
@@ -106,28 +111,13 @@ int	export()
 {
 	if (g_msh.cmd->cmd[1] == NULL)
 		env(ADD_FUTERS);
-	// else
-	// 	if (export_vname())
-	// 		quit_minishell(EXIT_FAILURE, "variable name undefined");
+	else
+		if (export_vname())
+			quit_minishell(EXIT_FAILURE, "variable name undefined");
+	//data_management(NULL, NO_ENV, NULL);
 	return (EXIT_SUCCESS);
 }
 
-
-// ! If variable is assigned (has equal sign) then we need to add double quotes
-
-//!  - If no arguments print all environment variables (including unnassigned
-//!  ones(e.g. VAR instead of VAR=10))
-//!  - If there are arguments each argument is a potential environment variable
-//!  to be added to the environment variable linked list
-//!  @param:	- [t_list *] list of tokens in a command
-//! 			- [t_list **] pointer to envp linked list
-//!  @return:	[int] exit status
-//!  Line-by-line comments:
-//!  @16-17	In case the variable already exists we just need to update it in 
-//! 			the list and only if it is assigned: (e.g. If in envp ENVVAR=5
-//! 			export ENVVAR has no effect)
-//!  @20		If the variable doesn't exist we create a new node in the envp
-//! 			linked list
 
  
  

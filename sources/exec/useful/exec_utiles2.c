@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:08:13 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/27 21:12:20 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:24:42 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ void	get_env(char **env)
 	}
 	if (!already_there(&g_msh.dup_envp))
 	{
-		node = create_env_node(ft_split("OLDPWD", ' '));	
+		node = create_env_node(ft_split("OLDPWD", ' '));
+		node->key = ft_strtrim(node->key, "=");
 		add_env_back(&g_msh.dup_envp, node);
 	}
 }

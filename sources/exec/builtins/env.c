@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:23:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/27 23:35:28 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:28:07 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,16 @@ void	export_env()
 	sort();
 	while(g_msh.sort_env[i])
 	{
+		printf("%s", "declare -x ");
 		ptr = g_msh.dup_envp;
 		while (ptr)
 		{
 			if (ft_strcmp(ptr->key, g_msh.sort_env[i]) == 0)
 			{
-				if (ft_strcmp(ptr->value, "") == 0)
-					ft_putstr(ft_strtrim(ptr->key, "="));      
+				if (ft_strchr(ptr->key, '='))
+					printf("%s\"%s\"\n", ptr->key, ptr->value);  
 				else
-					printf("%s\"%s\"\n", ptr->key, ptr->value);
+					printf("%s\n", ptr->key);
 			}
 			ptr = ptr->next;
 		}
