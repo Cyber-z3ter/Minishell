@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/28 19:54:50 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/29 14:54:20 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,6 @@ t_command	*parser(char *line)
 	ft_remove_unsed(cmd_list);
 	if (!remove_quotes(cmd_list))
 		print_error(list);
-
-	{
-		// clear_cmds(&cmd_list);
-		// print_error(list);
-		// return (NULL);
-	}
-
 	return (cmd_list);
 }
 
@@ -104,9 +97,7 @@ void	ft_prompt(void)
 		if (command_checker(command))
 			break;
 		cmds = parser(command);
-		// display(cmds);
 		execute(cmds);
-		//  display(cmds);
 		free (command);
 	}
 }

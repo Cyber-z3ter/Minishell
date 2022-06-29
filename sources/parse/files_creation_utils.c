@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:06 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/28 10:50:57 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:07:50 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	open_redirect_input(char *file, t_command *node)
 	flag = 1;
 	if ((access(file, F_OK)) == 0)
 	{
-		fd = open(file, O_WRONLY, S_IRWXU);
+		fd = open(file, O_RDONLY, 0666);
 		node->infile = fd;
 	}
 	else
@@ -40,12 +40,12 @@ void	open_app_redirect_out(char *file, t_command *node)
 
 	if ((!access(file, F_OK)) == 0)
 	{
-		fd = open(file, O_WRONLY, S_IWUSR);
+		fd = open(file, O_TRUNC | O_RDWR | O_CREAT, 0666);
 		node->outfile = fd;
 	}
 	else
 	{
-		fd = open(file, O_CREAT, S_IWUSR);
+		fd = open(file, O_TRUNC | O_RDWR | O_CREAT, 0666);
 		node->outfile = fd;
 	}
 }
@@ -54,7 +54,7 @@ void	open_redirect_out(char *fl, t_command *node)
 {
 	int	fd;
 
-	fd = open(fl, O_CREAT, S_IRWXU);
+	fd = open(fl, O_TRUNC | O_RDWR | O_CREAT, 0666);
 	node->outfile = fd;
 }
 

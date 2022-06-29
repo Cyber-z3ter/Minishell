@@ -29,7 +29,7 @@ all  :$(NAME)
 $(NAME) : $(P_OBJ) $(E_OBJ)
 		@make -C ./libft
 		@make bonus -C ./libft
-		@$(CC) $(FLAGS) ./libft/libft.a $(P_OBJ) $(E_OBJ) -o $(NAME) -lreadline
+		@$(CC) $(FLAGS) ./libft/libft.a $(P_OBJ) $(E_OBJ) -o $(NAME) -L$(shell brew --prefix readline)/lib -lreadline
 		@echo "\n \n$(GREEN)$(TAB)$(TAB)"CREATED" $(RESET)"
 
 %.o : %.c includes/minishell.h  libft/libft.h

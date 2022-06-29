@@ -1,41 +1,27 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   exit.c                                             :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2022/06/13 11:21:49 by houazzan          #+#    #+#             */
-// /*   Updated: 2022/06/15 15:16:54 by houazzan         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/13 11:21:49 by houazzan          #+#    #+#             */
+/*   Updated: 2022/06/29 14:34:06 by houazzan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 
 
-//#include "../../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-// void    status(int status)
-// {
-//     t_exit exit;
-//     status = (char)status;
-// }
-
-
-
-// int exit_command(t_list *command_list, t_env *env_list)
-// {
-//     if (command_list->next == NULL)
-//     {
-//         status(0);
-//         exit(0);
-//     }
-//     else
-//     {
-//         status(ft_atoi(command_list->next->content));
-//         exit(ft_atoi(command_list->next->content));
-//     }
-//     return (0);
-// }
+void exiting()
+{
+    exit (0);
+    g_msh.exit_status = ft_atoi(g_msh.cmd->cmd[1]);
+    printf("%d\n", ft_atoi(g_msh.cmd->cmd[1]));
+    printf("%d\n", g_msh.exit_status);
+   // exit(ft_atoi(g_msh.cmd->cmd[1]));
+}
 
 // ~ if exit is the only command exit we do execute it else we just egnore it ~ //
 

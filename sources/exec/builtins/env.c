@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:23:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/29 08:24:48 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:49:32 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,20 +95,12 @@ int    env(int state)
 	else
 		while (ptr!= NULL)
 		{
-			if (ft_strcmp(ptr->value, "\0"))
+			if (strstr(ptr->key, "=") != NULL)
 			{
-				if (ft_strlen(ft_strchr(ptr->value, '=')) == 1)
-				{
-					printf("%s", ptr->key);
-					printf("%s\n", ptr->value);
-				}
-				else
-				{
-					printf("%s", ptr->key);
-					printf("%s\n", ptr->value);
-				}
+				printf("%s", ptr->key);
+				printf("%s\n", ptr->value);
 			}
 			ptr= ptr->next;
 		}
-		return (EXIT_SUCCESS);
+		return (0);
 }

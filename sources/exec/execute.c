@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/28 20:21:21 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:30:04 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,16 @@ void	command_runing()
 	int i;
 	
 	i = 0;
-	if (g_msh.cmd->cmd_type == EXECVE)
+	while(g_msh.separ_path[i])
 	{
-		while(g_msh.separ_path[i])
-		{
-			command = ft_strjoin(g_msh.separ_path[i], g_msh.cmd->cmd[0]);
-			if (access(command, X_OK) == 0)
-				break;
-			free(command);
-			i++;
-		}
-		if(command)
-			execve(command, g_msh.cmd->cmd, g_msh.my_env);
+		command = ft_strjoin(g_msh.separ_path[i], g_msh.cmd->cmd[0]);
+		if (access(command, X_OK) == 0)
+			break;
+		free(command);
+		i++;
 	}
-	 else
-	 	run_builtins();
+	if(command)
+		execve(command, g_msh.cmd->cmd, g_msh.my_env);
 }
 /* **************************************************** */
 /*                                                      */
@@ -65,7 +60,7 @@ void	set_pipes()
 	int i;
 
 	i = 0;
-	if (g_msh.cmd_number > 1)
+	if (g_msh.cmd_number > 0)
 	{
 		g_msh.pipefd = (int *) malloc(sizeof(int) * 2 * (g_msh.cmd_number - 1));
 		if(!g_msh.pipefd)
@@ -92,16 +87,25 @@ void	execute_cmd()
 	set_pipes();
 	while (g_msh.cmd)
 	{
-		g_msh.pid = fork();
-		if (g_msh.pid == 0)
+		if (g_msh.cmd->cmd_type == EXECVE || g_msh.cmd->next || g_msh.cmd_number > 1)
 		{
-			if (command != 0)
-				dup2(g_msh.pipefd[(command - 1) * 2], STDIN_FILENO);
-			if (command != g_msh.cmd_number - 1)
-				dup2(g_msh.pipefd[command * 2 + 1], STDOUT_FILENO);
-			close_pipes();
-			command_runing();
+			g_msh.pid = fork();			
+			if (g_msh.pid == 0)
+			{					
+				if (command != 0)
+					dup2(g_msh.pipefd[(command - 1) * 2], STDIN_FILENO);
+				if (command != g_msh.cmd_number - 1)
+					dup2(g_msh.pipefd[command * 2 + 1], STDOUT_FILENO);
+				if (g_msh.cmd->outfile != 1)
+					dup2(g_msh.cmd->outfile, STDOUT_FILENO);
+				if (g_msh.cmd->infile != 0)
+					dup2(g_msh.cmd->infile, STDIN_FILENO);
+				close_pipes();
+				command_runing();
+			}
 		}
+		else
+			run_builtins();
 		command++;
 		g_msh.cmd = g_msh.cmd->next;
 	}

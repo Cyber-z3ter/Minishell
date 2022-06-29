@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:55:41 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/28 10:50:39 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/29 14:25:48 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@ void	print_error(void)
 
 void	ft_check(char *command)
 {
-	if (!ft_strcmp1(command, "exit"))
-	{
-		printf("exit");
-		exit(1);
-	}
-	else if (command[0] != '\0')
+	if (command[0] != '\0')
 		add_history(command);
 }
 

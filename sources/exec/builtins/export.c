@@ -67,11 +67,11 @@ void	invalid_vn(char	*table)
 	
 	i = 1;
 	if (ft_strlen(ft_strchr(table, '+')) >  1 || (!ft_isalpha(table[0]) && table[0] != '_'))
-		quit_minishell(EXIT_FAILURE, ft_strjoin(ft_strjoin("export ", table)," : not a valid identifier"));
+		quit_minishell(1, ft_strjoin(ft_strjoin("export ", table)," : not a valid identifier"));
 	while (table[i])
 	{
 		if (!ft_isdigit(table[i]) && !ft_isalpha(table[i]) && table[i] != '_' && table[i] != '+')
-			quit_minishell(EXIT_FAILURE, ft_strjoin(ft_strjoin("export ", table),": not a valid identifier"));
+			quit_minishell(1, ft_strjoin(ft_strjoin("export ", table),": not a valid identifier"));
 		i++;
 	}
 }

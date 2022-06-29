@@ -45,7 +45,7 @@ int	echo()
 
 	i = 1;
 	flag = 0;
-
+	printf("%d\n", g_msh.exit_status);
 	while (g_msh.cmd->cmd[i])
 	{
 		if (!check_flag(g_msh.cmd->cmd[i]))

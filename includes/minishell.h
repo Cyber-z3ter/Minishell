@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:07:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/29 09:27:40 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:45:47 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int		export();
 int 	unset();
 void	exec(char *command_list, t_list *env_list);
 void	add_back(t_list **head, t_list *new_node);
-void	status(int status);
-int		exit_command(t_list *command_list, t_list *env_list);
+void     exiting();
 
 void    prompt_init(void);
 void	quit_minishell(int exit_code, char *error_msg);

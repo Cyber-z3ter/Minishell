@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 13:19:48 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/28 19:14:59 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/06/29 14:07:26 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ typedef struct tokens {
 
 typedef struct command {
 	char    **cmd;
-	int		infile;
-	int		outfile;
-	int		herdoc;
-	char 	**delims;
-	char	*del;
-	int		flag;
+	int		infile; 
+	int		outfile; 
+	int		herdoc; // ~ there is a herdoc 
+	char 	**delims; // ~ how many delemiters 
+	char	*del; // ~ not my business
+	int		flag; // ~ not my business
 	struct	command *next;
 	t_builtins	cmd_type;
 } t_command;
