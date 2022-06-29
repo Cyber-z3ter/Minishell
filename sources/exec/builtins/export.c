@@ -14,19 +14,20 @@
 #include "../../../includes/minishell.h"
 
 
-int	loop_over_env(int  add_to, char **table)
+int	loop_over_env(int  add_to, char **table, char *str)
 {
 	t_env	*ptr;
 	int		i;
 	int		j;
 
 	ptr = g_msh.dup_envp;
-	i = ft_strlen(table[0]);
 	while (ptr != NULL)
 	{
-		if (ft_strncmp(table[0], ptr->key, i) == 0 && (i == ft_strlen(ptr->key)))
+		if (ft_strcmp(table[0], ft_strtrim(ptr->key, "=")) == 0)
 		{
-			if (add_to == 1 && table[1])
+			if (strstr(str, "=") == NULL)
+				return (1);
+			else if (add_to == 1 && table[1])
 				ptr->value = ft_strjoin(ptr->value, table[1]);
 			else if (table[1])
 				ptr->value = ft_strdup(table[1]);
@@ -41,7 +42,7 @@ int	loop_over_env(int  add_to, char **table)
 
 
 
-int already_exist(char **table)
+int already_exist(char **table, char *str)
 {
 	int add_to;
 
@@ -51,7 +52,7 @@ int already_exist(char **table)
 		table[0] = ft_strtrim(table[0], "+");
 		add_to = 1;
 	}
-	if (!loop_over_env(add_to, table))
+	if (loop_over_env(add_to, table, str) == 1)
 		return(1);
 	return (0);
 }
@@ -65,7 +66,7 @@ void	invalid_vn(char	*table)
 	int i;
 	
 	i = 1;
-	if (ft_strlen(ft_strchr(table, '+')) >  1 || !ft_isalpha(table[0]) && table[0] != '_')
+	if (ft_strlen(ft_strchr(table, '+')) >  1 || (!ft_isalpha(table[0]) && table[0] != '_'))
 		quit_minishell(EXIT_FAILURE, ft_strjoin(ft_strjoin("export ", table)," : not a valid identifier"));
 	while (table[i])
 	{
@@ -88,13 +89,13 @@ int	export_vname()
 	int 	i;
 
 	i = 1;
-	while (g_msh.cmd->cmd[i] != NULL) // ~ cheack if g_smh.cmd.cmd[i] has no = and it is already in the list don't do any thing
+	while (g_msh.cmd->cmd[i] != NULL) 
 	{
 		table = ft_sp_split(g_msh.cmd->cmd[i], '=');
 		invalid_vn(table[0]);
-		if (already_exist(table))
+		if (already_exist(table, g_msh.cmd->cmd[i]) != 1)
 		{
-			node = create_env_node(table);
+			node = create_env_node(table, g_msh.cmd->cmd[i]);
 			add_env_back(&g_msh.dup_envp, node);
 		}
 		free(table);
