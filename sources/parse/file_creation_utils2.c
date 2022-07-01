@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   file_creation_utils2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 11:21:49 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/01 22:29:55 by houazzan         ###   ########.fr       */
+/*   Created: 2022/07/01 10:07:25 by aouhadou          #+#    #+#             */
+/*   Updated: 2022/07/01 10:07:29 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/minishell.h"
 
-
-#include "../../../includes/minishell.h"
-
-void exiting()
+int	is_file2(t_command *node)
 {
-    if (g_msh.cmd->cmd[1]) 
-        exit (ft_atoi(g_msh.cmd->cmd[1]));
-    else
-        exit(0);
+	int	i;
+
+	while (node)
+	{
+		i = 0;
+		while (node->cmd[i])
+		{
+			if (is_redirection(node->cmd[i]))
+				return (i);
+			i++;
+		}
+		node = node->next;
+	}
+	return (-1);
 }

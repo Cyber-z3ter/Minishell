@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/30 21:48:13 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/01 21:57:14 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void display(t_command *node) {
 		i = 0;
 		while (tmp->cmd[i])
 		{
-			printf("{%s} => |%d| => oufilefile: [%d] => infile [%d]\n", tmp->cmd[i], tmp->herdoc, tmp->outfile, tmp->infile);
+			printf("{%s} => |%d|\n", tmp->cmd[i], tmp->herdoc);
 			i++;
 		}
+		printf(" => outfile: [%d] => infile [%d]\n", tmp->outfile, tmp->infile);
 		if (tmp->herdoc == 1)
 		{
 			i = 0;
@@ -56,6 +57,7 @@ t_token	*ft_lexer(char *line)
 		print_error();
 		return (NULL);
 	}
+	free(cmd);
 	return (list);
 }
 
@@ -66,14 +68,23 @@ t_command	*parser(char *line)
 	
 	list = ft_lexer(line);
 	if (!list)
+	{
+		list_clear(&list);
 		return (NULL);
+	}
 	cmd_list = creat_cmds(list);
-	list_clear(&list);
-	expand_dollar(cmd_list);
-	open_files(cmd_list);
-	ft_remove_unsed(cmd_list);
+	if (check_dollar(cmd_list))
+		expand_dollar(cmd_list);
+	cmd_list->infile = 0;
+	cmd_list->outfile = 1;
+	cmd_list->herdoc = 0;
+	if (is_file2(cmd_list) != -1)
+	{
+		open_files(cmd_list);
+		ft_remove_unsed(cmd_list);
+	}
 	if (!remove_quotes(cmd_list))
-		print_error(list);
+		print_error();
 	return (cmd_list);
 }
 
@@ -83,22 +94,25 @@ t_command	*parser(char *line)
 
 void	ft_prompt(void)
 {
-	char	*command;
+	char		*command;
 	t_command	*cmds;
 
+	cmds = NULL;
 	while (1)
 	{
 		command = readline("$> ");
 		if (!command)
-			ctrl_d();
+			ctrl_d(command);
 		ft_check(command);
 		if (!ft_strlen(command))
 			continue;
 		if (command_checker(command))
 			break;
 		cmds = parser(command);
+		if (g_msh.syntax_err)
+			execute(cmds);
 		//display(cmds);
-		execute(cmds);
+		clear_cmds(&cmds);
 		free (command);
 	}
 }
@@ -113,7 +127,8 @@ int	main(int ac, char **av, char **env)
 	signal(SIGINT, handle_sig);
 	signal(SIGQUIT, handle_sig);
 	ft_bzero(&g_msh, sizeof(g_msh));
-	data_management(NULL ,ENV, env);
+	if (!g_msh.my_env)
+		data_management(NULL ,ENV, env);
 	ft_prompt();
 	return (0);
 }

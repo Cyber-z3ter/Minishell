@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:55:56 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/28 10:50:52 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:45:38 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	is_dollar(char *str)
 	i = 0;
 	while (str[i])
 	{
+		if (ft_strcmp(str, "$?") == 0) // ~ to let the $? command pass without changing it
+			return (-1);
 		if (str[i] == '$')
 			return (i);
 		i++;
@@ -64,7 +66,7 @@ char	*dollar_substr1(char *str)
 	char	*res;
 	int		end;
 
-	sub = strchr(str, '$');
+	sub = ft_strchr(str, '$');
 	end = get_env_end(sub);
 	res = ft_substr(sub, 1, end - 1);
 	return (res);
@@ -76,7 +78,7 @@ char	*dollar_substr(char *str)
 	char	*res;
 	int		end;
 
-	sub = strchr(str, '$');
+	sub = ft_strchr(str, '$');
 	end = get_env_end(sub);
 	res = ft_substr(sub, 0, end);
 	return (res);
