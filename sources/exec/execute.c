@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/30 22:05:41 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/01 09:05:14 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	command_runing()
 	i = 0;
 	while(g_msh.separ_path[i] && g_msh.cmd->cmd[0])
 	{
-		command = ft_strjoin(g_msh.separ_path[i], g_msh.cmd->cmd[0]);
+		if(access(g_msh.cmd->cmd[0], W_OK) == -1)
+			command = g_msh.cmd->cmd[0];
+		else
+			command = ft_strjoin(g_msh.separ_path[i], g_msh.cmd->cmd[0]);
 		if (access(command, X_OK) == 0)
 			break;
 		free(command);
