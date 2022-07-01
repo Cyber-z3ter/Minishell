@@ -48,6 +48,7 @@ void	ft_remove_unsed(t_command *node)
 			data.i++;
 		}
 		data.tab[data.j] = NULL;
+		free_tab(tmp->cmd);
 		tmp->cmd = data.tab;
 		tmp = tmp->next;
 	}

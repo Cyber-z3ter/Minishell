@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_list_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:55:51 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/28 10:50:49 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:18:01 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,36 @@ void	add_cmd_to_end(t_command **command, char **new_data)
 	while (last->next != NULL)
 		last = last->next;
 	last->next = new_node;
-	return ;
 }
 
-void	delete_cmd(t_command **head, t_command *del_node)
+void	*free_tab(char **array)
 {
-	if (*head == NULL || del_node == NULL)
-		return ;
-	if (*head == del_node)
-		*head = del_node->next;
-	free(del_node);
+	int	i;
+
+	if (!array)
+		return (NULL);
+	i = 0;
+	while (array[i])
+		free(array[i++]);
+	free(array);
+	array = 0;
+	return (NULL);
 }
 
-void	clear_cmds(t_command **head_ref)
+void	clear_cmds(t_command **head)
 {
-	t_command	*temp;
-	t_command	*next;
+	t_command	*tmp;
 
-	temp = *head_ref;
-	while (temp != NULL)
+	while ((*head) != NULL)
 	{
-		next = temp->next;
-		delete_cmd(head_ref, temp);
-		temp = next;
+		tmp = *head;
+		(*head) = (*head)->next;
+		if (tmp->herdoc == 1)
+		{
+			free_tab(tmp->delims);
+			free(tmp->del);
+		}
+		free_tab(tmp->cmd);
+		free(tmp);
 	}
 }

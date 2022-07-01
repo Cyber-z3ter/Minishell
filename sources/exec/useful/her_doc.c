@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   her_doc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:03:52 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/01 01:39:13 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:30:07 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	her_handle(int sig)
-{
-	if (sig == SIGINT)
-		siglongjmp()
-}
+// void	her_handle(int sig)
+// {
+// 	if (sig == SIGINT)
+// 		siglongjmp()
+// }
 
 void	her_doc(char *argv)
 {
@@ -26,7 +26,7 @@ void	her_doc(char *argv)
 	g_msh.fd = open("/tmp/file", O_CREAT | O_RDWR | O_TRUNC, 0666);
 	while (1)
 	{
-		signal(SIGINT, her_handle);
+		// signal(SIGINT, her_handle);
 		buff = readline("heredoc> ");
 		if (!buff || !ft_strcmp(buff, argv))
 			break ;

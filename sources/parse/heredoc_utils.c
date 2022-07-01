@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:18 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/28 10:51:06 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/30 21:54:39 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*ft_strjoin_1(char *s1, char *s2)
 	while (++j < ft_strlen(s2))
 		ptr[i++] = s2[j];
 	ptr[i] = '\0';
+	free(s1);
 	return (ptr);
 }
 
