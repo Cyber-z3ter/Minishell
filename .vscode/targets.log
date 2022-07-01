@@ -1,0 +1,1069 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Fri Jul  1 23:24:37 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/houazzan/Desktop/Minishell
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 58)
+BLUE = \033[0;34m
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n00006dr0001lf/T/vscode-ipc-d1f7de26-315e-4a93-a9fa-31bcc431bb00.sock
+# environment
+VSCODE_CWD = /
+# environment
+PATH = /Users/houazzan/goinfre/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+LaunchInstanceID = AD392FC2-12BE-4B83-A792-92409599089C
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# makefile (from `Makefile', line 54)
+PURPLE = \033[0;35m
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.2XmOzz5x4T/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# makefile (from `Makefile', line 5)
+EXEC_FILES = sources/exec/
+# environment
+PWD = /Users/houazzan/Desktop/Minishell
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# makefile (from `Makefile', line 52)
+GREEN = \033[0;32m
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/houazzan
+# makefile (from `Makefile', line 60)
+TAB = "\	"
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/houazzan/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+# environment
+LOGNAME = houazzan
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# makefile (from `Makefile', line 24)
+E_OBJ = $(EXEC:%.c=%.o)
+# environment
+ZSH = /Users/houazzan/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from `Makefile', line 14)
+P_SRC = minishell.c checker.c list_utils.c lis_utils2.c tokenizer.c toknizer_utils.c syntax_validation.c cmd_list_utils.c parser.c parser_utils.c expander.c expander_utils.c files_creation.c files_creation_utils.c heredoc_utils.c signals.c remove_unused_tab.c expander_utils2.c file_creation_utils2.c 
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# makefile (from `Makefile', line 7)
+ 
+PARSE_FILES = sources/parse/
+# makefile (from `Makefile', line 1)
+CC = gcc 
+# makefile (from `Makefile', line 20)
+EXEC = $(addprefix $(EXEC_FILES), $(E_SRC))
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = houazzan
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 26)
+NAME = minishell
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n00006dr0001lf/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/houazzan/Library/Application Support/Code/1.67.0-main.sock
+# makefile (from `Makefile', line 53)
+RED = \033[0;31m
+# makefile (from `Makefile', line 19)
+PARSE = $(addprefix $(PARSE_FILES), $(P_SRC))
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000002.Electron
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from `Makefile', line 57)
+YELLOW = \033[0;33m
+# makefile (from `Makefile', line 55)
+CYAN = \033[0;36m
+# automatic
++F = $(notdir $+)
+# makefile (from `Makefile', line 9)
+E_SRC = execute.c useful/quite.c useful/free_list.c useful/exec_utiles.c useful/exec_utiles1.c useful/exec_utiles2.c useful/exec_utiles3.c useful/her_doc.c useful/non_execve.c builtins/echo.c builtins/pwd.c builtins/env.c builtins/cd.c builtins/export.c builtins/unset.c builtins/exit.c 
+# environment
+__CF_USER_TEXT_ENCODING = 0x66E:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# environment
+HOMEBREW_NO_AUTO_UPDATE = 1
+# automatic
+<F = $(notdir $<)
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# makefile (from `Makefile', line 56)
+RESET = \033[0m
+# environment
+SECURITYSESSIONID = 186a8
+# automatic
+^F = $(notdir $^)
+# makefile (from `Makefile', line 23)
+P_OBJ = $(PARSE:%.c=%.o)
+# default
+SUFFIXES := 
+# makefile (from `Makefile', line 3)
+FLAGS = -Wall -Wextra -Werror 
+# makefile (from `Makefile', line 59)
+CHANGE = \033[0;35m
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+LANG = C
+# environment
+VSCODE_PID = 631
+# variable set hash-table stats:
+# Load=88/1024=9%, Rehash=0, Collisions=10/122=8%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# sources/exec/useful (device 16777225, inode 27839): 17 files, no impossibilities so far.
+# . (device 16777225, inode 27704): 10 files, no impossibilities.
+# sources/exec (device 16777225, inode 27829): 4 files, no impossibilities so far.
+# includes (device 16777225, inode 27769): 4 files, no impossibilities so far.
+# sources/exec/builtins (device 16777225, inode 27830): 15 files, no impossibilities so far.
+# sources/parse (device 16777225, inode 27847): 39 files, no impossibilities so far.
+# libft (device 16777225, inode 27773): 104 files, no impossibilities so far.
+
+# 193 files, no impossibilities in 7 directories.
+
+# Implicit Rules
+
+%.o: %.c includes/minishell.h  libft/libft.h
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+sources/exec/useful/exec_utiles3.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 08:42:54
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/exec/builtins/pwd.o: sources/exec/builtins/pwd.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/builtins/pwd'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/exec/builtins/env.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 14:39:03
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/exec/builtins/exit.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 22:29:55
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/parse/lis_utils2.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 14:39:03
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/parse/files_creation_utils.o: sources/parse/files_creation_utils.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/files_creation_utils'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/parse/file_creation_utils2.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/parse/parser_utils.o: sources/parse/parser_utils.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/parser_utils'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+all: minishell
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/exec/useful/exec_utiles.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 21:55:19
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/parse/syntax_validation.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 14:39:03
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+sources/exec/useful/non_execve.o: sources/exec/useful/non_execve.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/useful/non_execve'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/parse/checker.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 22:01:58
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/parse/syntax_validation.o: sources/parse/syntax_validation.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/syntax_validation'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+ 
+sources/parse/list_utils.o: sources/parse/list_utils.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/list_utils'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/exec/builtins/unset.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 22:04:24
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/exec/useful/exec_utiles2.o: sources/exec/useful/exec_utiles2.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/useful/exec_utiles2'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/exec/useful/free_list.o: sources/exec/useful/free_list.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/useful/free_list'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/parse/expander_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 18:45:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/exec/execute.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 22:40:33
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/parse/tokenizer.o: sources/parse/tokenizer.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/tokenizer'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/parse/expander.o: sources/parse/expander.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/expander'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/parse/remove_unused_tab.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/parse/minishell.o: sources/parse/minishell.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/minishell'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+sources/parse/cmd_list_utils.o: sources/parse/cmd_list_utils.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/cmd_list_utils'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/exec/builtins/cd.o: sources/exec/builtins/cd.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/builtins/cd'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/exec/useful/quite.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 22:02:06
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 23:23:42
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/exec/useful/her_doc.o: sources/exec/useful/her_doc.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/useful/her_doc'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/parse/expander_utils2.o: sources/parse/expander_utils2.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/expander_utils2'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/parse/heredoc_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/exec/useful/exec_utiles1.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 21:47:28
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/parse/signals.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 17:34:10
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/exec/builtins/echo.o: sources/exec/builtins/echo.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/builtins/echo'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/exec/builtins/export.o: sources/exec/builtins/export.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/builtins/export'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+ 
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+minishell: sources/parse/minishell.o sources/parse/checker.o sources/parse/list_utils.o sources/parse/lis_utils2.o sources/parse/tokenizer.o sources/parse/toknizer_utils.o sources/parse/syntax_validation.o sources/parse/cmd_list_utils.o sources/parse/parser.o sources/parse/parser_utils.o sources/parse/expander.o sources/parse/expander_utils.o sources/parse/files_creation.o sources/parse/files_creation_utils.o sources/parse/heredoc_utils.o sources/parse/signals.o sources/parse/remove_unused_tab.o sources/parse/expander_utils2.o sources/parse/file_creation_utils2.o sources/exec/execute.o sources/exec/useful/quite.o sources/exec/useful/free_list.o sources/exec/useful/exec_utiles.o sources/exec/useful/exec_utiles1.o sources/exec/useful/exec_utiles2.o sources/exec/useful/exec_utiles3.o sources/exec/useful/her_doc.o sources/exec/useful/non_execve.o sources/exec/builtins/echo.o sources/exec/builtins/pwd.o sources/exec/builtins/env.o sources/exec/builtins/cd.o sources/exec/builtins/export.o sources/exec/builtins/unset.o sources/exec/builtins/exit.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-01 23:23:49
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 31):
+	@make -C ./libft
+	@make bonus -C ./libft
+	@$(CC) $(FLAGS) ./libft/libft.a $(P_OBJ) $(E_OBJ) -o $(NAME) -L$(shell brew --prefix readline)/lib -lreadline
+	@echo "\n \n$(GREEN)$(TAB)$(TAB)"CREATED" $(RESET)"
+	
+
+# Not a target:
+sources/parse/files_creation_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/parse/files_creation.o: sources/parse/files_creation.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/files_creation'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/parse/parser_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/parse/parser.o: sources/parse/parser.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/parser'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 44):
+	@rm -rf $(NAME)
+	
+
+sources/parse/toknizer_utils.o: sources/parse/toknizer_utils.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/toknizer_utils'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/exec/useful/non_execve.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 21:45:09
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/parse/list_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/exec/useful/exec_utiles2.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 17:18:26
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/exec/useful/free_list.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 14:39:03
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/parse/tokenizer.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/parse/expander.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 20:54:53
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+sources/parse/minishell.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 21:57:14
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/parse/cmd_list_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/exec/builtins/cd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 22:26:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/exec/useful/her_doc.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 18:42:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/exec/useful/exec_utiles3.o: sources/exec/useful/exec_utiles3.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/useful/exec_utiles3'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+re: clean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+sources/parse/expander_utils2.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 40):
+	@rm -rf $(E_OBJ) $(P_OBJ)
+	@make fclean -C ./libft
+	
+
+sources/exec/builtins/env.o: sources/exec/builtins/env.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/builtins/env'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/exec/builtins/echo.c:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2022-07-01 21:15:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/exec/builtins/exit.o: sources/exec/builtins/exit.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/builtins/exit'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/parse/file_creation_utils2.o: sources/parse/file_creation_utils2.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/file_creation_utils2'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/exec/builtins/export.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 21:25:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/exec/useful/exec_utiles.o: sources/exec/useful/exec_utiles.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/useful/exec_utiles'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/parse/files_creation.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/parse/parser.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 10:41:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/parse/checker.o: sources/parse/checker.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/checker'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/parse/lis_utils2.o: sources/parse/lis_utils2.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/lis_utils2'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/exec/builtins/unset.o: sources/exec/builtins/unset.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/builtins/unset'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+libft/libft.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 14:39:03
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+sources/parse/toknizer_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 14:39:03
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/parse/expander_utils.o: sources/parse/expander_utils.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/expander_utils'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/exec/execute.o: sources/exec/execute.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/execute'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/parse/remove_unused_tab.o: sources/parse/remove_unused_tab.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/remove_unused_tab'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+includes/minishell.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-01 21:44:20
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/exec/useful/quite.o: sources/exec/useful/quite.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/useful/quite'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/parse/heredoc_utils.o: sources/parse/heredoc_utils.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/heredoc_utils'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# Not a target:
+sources/exec/builtins/pwd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-30 14:39:03
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+sources/exec/useful/exec_utiles1.o: sources/exec/useful/exec_utiles1.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/exec/useful/exec_utiles1'
+#  Last modified 2022-07-01 23:23:47
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+sources/parse/signals.o: sources/parse/signals.c includes/minishell.h libft/libft.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `sources/parse/signals'
+#  Last modified 2022-07-01 23:23:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 37):
+ 
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@
+	
+
+# files hash-table stats:
+# Load=81/1024=8%, Rehash=0, Collisions=26/382=7%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Fri Jul  1 23:24:37 2022
+
+ 

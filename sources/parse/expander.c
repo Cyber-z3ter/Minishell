@@ -6,7 +6,11 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:01 by aouhadou          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/01 20:54:53 by houazzan         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/01 11:59:40 by aouhadou         ###   ########.fr       */
+>>>>>>> a4a6daeb8c1874fc95c99ce0a642045899fbd199
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,26 +101,26 @@ void	expand_dollar(t_command *node)
 	while (node)
 	{
 		flag = 0;
-		i = 0;
-		while (node->cmd[i])
+		i = -1;
+		while (node->cmd[++i])
 		{
 			if (is_dollar(node->cmd[i]) >= 0 && node->cmd[i][0] != '\'')
 			{
 				flag = 1;
 				sub = dollar_substr(node->cmd[i]);
 				env = dollar_substr1(node->cmd[i]);
+<<<<<<< HEAD
 				if (get_env1(env))
 					replace_sub(&node->cmd[i], sub, get_env1(env));
 				else if (!get_env1(env))
 					replace_sub(&node->cmd[i], sub, "");
+=======
+				ft_expand(&node->cmd[i], sub, env);
+>>>>>>> a4a6daeb8c1874fc95c99ce0a642045899fbd199
 			}
-			i++;
 		}
 		if (flag == 1)
-		{
-			free(sub);
-			free(env);
-		}
+			ex_free(sub, env);
 		node = node->next;
 	}
 }
