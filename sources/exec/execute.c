@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/29 18:30:04 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/30 22:05:41 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	command_runing()
 	int i;
 	
 	i = 0;
-	while(g_msh.separ_path[i])
+	while(g_msh.separ_path[i] && g_msh.cmd->cmd[0])
 	{
 		command = ft_strjoin(g_msh.separ_path[i], g_msh.cmd->cmd[0]);
 		if (access(command, X_OK) == 0)
@@ -87,6 +87,8 @@ void	execute_cmd()
 	set_pipes();
 	while (g_msh.cmd)
 	{
+		if (g_msh.cmd->herdoc != 0)
+			run_her_doc();
 		if (g_msh.cmd->cmd_type == EXECVE || g_msh.cmd->next || g_msh.cmd_number > 1)
 		{
 			g_msh.pid = fork();			
@@ -96,7 +98,7 @@ void	execute_cmd()
 					dup2(g_msh.pipefd[(command - 1) * 2], STDIN_FILENO);
 				if (command != g_msh.cmd_number - 1)
 					dup2(g_msh.pipefd[command * 2 + 1], STDOUT_FILENO);
-				if (g_msh.cmd->outfile != 1)
+				if (g_msh.cmd->outfile != 1) 
 					dup2(g_msh.cmd->outfile, STDOUT_FILENO);
 				if (g_msh.cmd->infile != 0)
 					dup2(g_msh.cmd->infile, STDIN_FILENO);

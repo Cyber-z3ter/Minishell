@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:58:56 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/28 20:19:29 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:27:50 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ void cd_with_operands(char *c_pwd)
 void cd_no_operands(char *c_pwd)
 {
 	if (chdir(getenv("HOME")) != 0)
-		quit_minishell(EXIT_FAILURE, strerror(errno));
+		quit_minishell(errno, strerror(errno));
 	else
 		if ((c_pwd = getcwd(NULL, 0)) == NULL)
-			quit_minishell(EXIT_FAILURE, strerror(errno));
+			quit_minishell(errno, strerror(errno));
 	change_env(c_pwd);
 }
 

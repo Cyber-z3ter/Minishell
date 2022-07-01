@@ -27,6 +27,7 @@ int	first_variable(char *to_remove)
 		free(ptr_del);
 		return (0);
 	}
+	g_msh.dup_envp = ptr;
 	return(1);
 }
 

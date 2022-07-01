@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:07:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/29 13:45:47 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/01 01:01:37 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # include 	<unistd.h>
 # include	<stdint.h>
 # include   <sys/wait.h>
-# include   <paths.h> // ! for _PATH in case there isn't a PATH in the env
+#include    <sys/ioctl.h>
+# include   <paths.h>
 # include	"../libft/libft.h"
 # include	"structs.h"
 # include	"parse.h"
@@ -74,7 +75,8 @@ void        run_builtins();
 void	    get_env(char **env);
 int         ft_env_size(t_env *env);
 void	    add_env_back(t_env **head, t_env *new_node);
-t_env	    *create_env_node(char **env, char *str); 
+t_env	    *create_env_node(char **env, char *str);
+void        run_her_doc();
 
 
 

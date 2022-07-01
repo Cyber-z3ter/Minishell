@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:36 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/29 10:29:31 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:38:11 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	handle_sig(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printf("\033[K$>\n");
+		printf("\033[K $>\n");
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();

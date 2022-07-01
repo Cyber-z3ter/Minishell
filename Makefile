@@ -7,7 +7,7 @@ EXEC_FILES = sources/exec/
 PARSE_FILES = sources/parse/
 
 E_SRC  = execute.c useful/quite.c useful/free_list.c useful/exec_utiles.c useful/exec_utiles1.c useful/exec_utiles2.c\
-		 useful/exec_utiles3.c\
+		 useful/exec_utiles3.c useful/her_doc.c\
 		 useful/non_execve.c builtins/echo.c builtins/pwd.c builtins/env.c builtins/cd.c builtins/export.c builtins/unset.c builtins/exit.c \
 	   
 	   
@@ -45,7 +45,7 @@ fclean : clean
 re		: clean all
 
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re 
 
 
 GREEN = \033[0;32m

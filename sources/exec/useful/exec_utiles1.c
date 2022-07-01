@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:04:55 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/28 20:17:26 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/30 21:47:28 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void	catagorize()
 	t_command *ptr;
 
 	ptr = g_msh.cmd;
-
-	
-	while (ptr)
+	if (!ptr->cmd[0])
+		ptr->cmd_type = -1;
+	while (ptr && ptr->cmd[0])
 	{
 		if (ft_strcmp(ptr->cmd[0], "exit") == 0)
 			ptr->cmd_type = EXIT;
@@ -87,5 +87,4 @@ void	catagorize()
 		g_msh.cmd_number++;
 		ptr = ptr->next; 
 	}
-	
 }

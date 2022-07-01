@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 18:02:23 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/29 13:46:27 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/06/30 21:44:47 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void    run_builtins()
 {
+    // printf("%d", g_msh.cmd->cmd_type);
+    // printf("here\n");
     if (g_msh.cmd->cmd_type == CD)
         g_msh.exit_status = cd();
     else if (g_msh.cmd->cmd_type == ECHO)
