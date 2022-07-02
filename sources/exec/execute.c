@@ -6,12 +6,31 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/02 00:23:20 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:31:11 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
- 
+
+
+void	special_futers_for_cmd()
+{
+	t_env *ptr;
+	
+	if(ft_strcmp(g_msh.cmd->cmd[0], "./minishell") == 0)
+	{
+		ft_putstr_fd(g_msh.cmd->cmd[0], 2);
+		while (ptr)
+		{
+			if (ft_strcmp(ptr->key, "SHLVL=") == 0)
+				ptr->value = ft_itoa(ft_atoi(ptr->value) + 1);
+			ptr = ptr->next;
+		}
+	}
+	
+}
+
+
 
 int	state(char *input)
 {
@@ -100,6 +119,7 @@ void	execute_cmd()
 	int command;
 
 	command = 0;
+	int status = 0;
 	set_pipes();
 	while (g_msh.cmd)
 	{
@@ -108,8 +128,9 @@ void	execute_cmd()
 			g_msh.pid = fork();			
 			if (g_msh.pid == 0)
 			{
+				special_futers_for_cmd();
 				if (g_msh.cmd->herdoc != 0)
-					run_her_doc();			
+					run_her_doc();
 				if (command != 0)
 					dup2(g_msh.pipefd[(command - 1) * 2], STDIN_FILENO);
 				if (command != g_msh.cmd_number - 1)
@@ -128,8 +149,11 @@ void	execute_cmd()
 		g_msh.cmd = g_msh.cmd->next;
 	}
 	close_pipes();
-	waitpid(g_msh.pid, (int *)g_msh.exit_status, 0);
+	waitpid(g_msh.pid, (int *)&g_msh.exit_status, 0);
+	if ( WIFEXITED(g_msh.exit_status) )
+		g_msh.exit_status =  WEXITSTATUS(g_msh.exit_status);    
 }
+
 
 /* **************************************************** */
 /*                        🅼🅰🅸🅽                       */

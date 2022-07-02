@@ -6,13 +6,10 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/07/01 21:57:14 by houazzan         ###   ########.fr       */
-=======
-/*   Updated: 2022/07/01 11:59:09 by aouhadou         ###   ########.fr       */
->>>>>>> a4a6daeb8c1874fc95c99ce0a642045899fbd199
+/*   Updated: 2022/07/02 13:30:27 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/minishell.h"
 
@@ -79,9 +76,6 @@ t_command	*parser(char *line)
 	cmd_list = creat_cmds(list);
 	if (check_dollar(cmd_list))
 		expand_dollar(cmd_list);
-	cmd_list->infile = 0;
-	cmd_list->outfile = 1;
-	cmd_list->herdoc = 0;
 	if (is_file2(cmd_list) != -1)
 	{
 		open_files(cmd_list);

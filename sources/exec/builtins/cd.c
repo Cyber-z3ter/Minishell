@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:58:56 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/01 22:26:12 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:14:36 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	hyphen_expand()
 	old_pwd = 0;
 	while (ptr != NULL)
 	{
-		if (ft_strcmp(ptr->key, "OLDPWD") == 0)
+		if (ft_strcmp(ptr->key, "OLDPWD=") == 0)
 			old_pwd = ptr->value;
 		ptr = ptr->next;
 	}
 	if (ft_strcmp(g_msh.cmd->cmd[1], "-") == 0)
-		g_msh.cmd->cmd[1] = ft_strdup (old_pwd);
+		g_msh.cmd->cmd[1] = ft_strdup(old_pwd);
 }
 
 /* **************************************************** */
@@ -68,7 +68,6 @@ void	change_env(char *c_pwd)
 int cd_with_operands(char *c_pwd)
 {
 	int old_pwd;
-
 
 	old_pwd = 0;
 	if (ft_strcmp(g_msh.cmd->cmd[1], "-") == 0)
@@ -113,7 +112,6 @@ void	cd()
     int     i;
 
     i = 1;
-
 	c_pwd = malloc(sizeof(char) * 1024);
     if (!c_pwd)
        quit_minishell(errno, strerror(errno));
