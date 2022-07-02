@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_creation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:13 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/06/30 21:25:02 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:03:42 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ int	ft_open(t_command *node)
 			create_delimters(node, &i);
 		else if (!ft_strcmp1(node->cmd[i], "<"))
 		{
-			if (access(node->cmd[i + 1], F_OK) && node->cmd[i - 1] == 0)
-				printf("shell: no such file: %s\n", node->cmd[i + 1]);
-			else if (!open_redirect_input(node->cmd[i + 1], node))
+			// if (access(node->cmd[i + 1], F_OK) && node->cmd[i - 1] == 0)
+			// 	printf("shell: no such file: %s\n", node->cmd[i + 1]);
+			if (open_redirect_input(node->cmd[i + 1], node))
 			{
-				ft_bzero(node->cmd[i], ft_strlen(node->cmd[i]));
-				return (i + 2);
-			}
+				//ft_bzero(node->cmd[i], ft_strlen(node->cmd[i]));
 			ft_free(node->cmd[i + 1], node->cmd[i]);
+				//return (i + 2);
+			}
+			//open_redirect_input(node->cmd[i + 1], node);
 		}
 	}
 	return (-1);

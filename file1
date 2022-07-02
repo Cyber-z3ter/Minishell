@@ -1,10 +1,8 @@
 Makefile
 README.md
 file
+file1
 includes
 libft
-minishell
 minishell.dSYM
 sources
-test
-test1

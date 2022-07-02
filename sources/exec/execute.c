@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/02 14:31:11 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:35:02 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,15 +128,18 @@ void	execute_cmd()
 			g_msh.pid = fork();			
 			if (g_msh.pid == 0)
 			{
-				special_futers_for_cmd();
+				
 				if (g_msh.cmd->herdoc != 0)
 					run_her_doc();
-				if (command != 0)
-					dup2(g_msh.pipefd[(command - 1) * 2], STDIN_FILENO);
-				if (command != g_msh.cmd_number - 1)
-					dup2(g_msh.pipefd[command * 2 + 1], STDOUT_FILENO);
-				if (g_msh.cmd->outfile != 1) 
+				// if (command != 0)
+				// 	dup2(g_msh.pipefd[(command - 1) * 2], STDIN_FILENO);
+				// if (command != g_msh.cmd_number - 1)
+				// 	dup2(g_msh.pipefd[command * 2 + 1], STDOUT_FILENO);
+				if (g_msh.cmd->outfile != 1)
+				{
+					ft_putstr_fd("hello\n", 2);
 					dup2(g_msh.cmd->outfile, STDOUT_FILENO);
+				}
 				if (g_msh.cmd->infile != 0)
 					dup2(g_msh.cmd->infile, STDIN_FILENO);
 				close_pipes();
