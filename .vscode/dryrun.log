@@ -1,6 +1,10 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/houazzan/Desktop/Minishell'
-make: Nothing to be done for `all'.
+gcc   -I/goinfre/houazzan/homebrew/opt/readline/include -c sources/exec/execute.c -o sources/exec/execute.o
  
+make -C ./libft
+make bonus -C ./libft
+gcc  -Wall -Wextra -Werror  ./libft/libft.a sources/parse/minishell.o sources/parse/checker.o sources/parse/list_utils.o sources/parse/lis_utils2.o sources/parse/tokenizer.o sources/parse/toknizer_utils.o sources/parse/syntax_validation.o sources/parse/cmd_list_utils.o sources/parse/parser.o sources/parse/parser_utils.o sources/parse/expander.o sources/parse/expander_utils.o sources/parse/files_creation.o sources/parse/files_creation_utils.o sources/parse/heredoc_utils.o sources/parse/signals.o sources/parse/remove_unused_tab.o sources/parse/expander_utils2.o sources/parse/file_creation_utils2.o sources/exec/execute.o sources/exec/useful/quite.o sources/exec/useful/free_list.o sources/exec/useful/exec_utiles.o sources/exec/useful/exec_utiles1.o sources/exec/useful/exec_utiles2.o sources/exec/useful/exec_utiles3.o sources/exec/useful/her_doc.o sources/exec/useful/non_execve.o sources/exec/builtins/echo.o sources/exec/builtins/pwd.o sources/exec/builtins/env.o sources/exec/builtins/cd.o sources/exec/builtins/export.o sources/exec/builtins/unset.o sources/exec/builtins/exit.o -o minishell -L/goinfre/houazzan/homebrew/opt/readline/lib -lreadline
+echo "\n \n\033[0;32m"\	""\	""CREATED" \033[0m"
 make: Leaving directory `/Users/houazzan/Desktop/Minishell'
  
