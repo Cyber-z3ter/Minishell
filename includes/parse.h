@@ -6,7 +6,7 @@
 /*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:02 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 21:26:25 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:41:41 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void				ft_out_file(t_command *node, int *i);
 void                ft_open(t_command *node);
 void				open_files(t_command *node);
 int                 is_file2(t_command *node);
+void                open_redirect_out1(char *fl, t_command *node);
 
 // herduq
 char				*ft_strjoin_1(char *s1, char *s2);
