@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/02 21:33:13 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 02:52:40 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_prompt(void)
 		cmds = parser(command);
 		 if (g_msh.syntax_err)
 			 execute(cmds);
-		//display(cmds);
+		// display(cmds);
 		clear_cmds(&cmds);
 		free (command);
 	}

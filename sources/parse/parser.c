@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:55:23 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/02 13:13:22 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 02:10:57 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_command	*creat_cmds(t_token *node)
 	{
 		ptr->infile = 0;
 		ptr->outfile = 1;
+		ptr->herdoc = 0;
 		ptr = ptr->next;
 	}
 	return (cmds);

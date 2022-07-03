@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/02 22:45:59 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 02:19:20 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	special_futers_for_cmd()
 			if (ft_strcmp(ptr->key, "OLDPWD=") == 0)
 			{
 				ft_strtrim(ptr->key, "=");
-				ptr->value = 0;
+				ptr->value = NULL;
+				
 			}
 			ptr = ptr->next;
 		}
@@ -67,12 +68,9 @@ void	command_runing()
 			break;
 		i++;
 	}
-	ft_putstr_fd("here\n", 2);
 	if (access(command, F_OK) == 0)
-	{
 		execve(command, g_msh.cmd->cmd, g_msh.my_env);
-	}
-	else if (state(command))
+	if (state(command))
 		quit_minishell(126, ft_strjoin(ft_strjoin("bash: ", command), " is a directory"));
 	else
 	 	quit_minishell(127, ft_strjoin(ft_strjoin("bash: ", command), " commaned not found"));
@@ -131,14 +129,16 @@ void	execute_cmd()
 	set_pipes();
 	while (g_msh.cmd)
 	{
-		if (g_msh.cmd->cmd_type == EXECVE || g_msh.cmd->next || g_msh.cmd_number > 1 || g_msh.cmd->herdoc)
+		if (g_msh.cmd_number == 1 && g_msh.cmd->cmd_type != EXECVE)
+			run_builtins();
+		else
 		{
 			g_msh.pid = fork();			
 			if (g_msh.pid == 0)
 			{
 				special_futers_for_cmd();
-				if (g_msh.cmd->herdoc != 0)
-					run_her_doc();
+				// if (g_msh.cmd->herdoc != 0)
+				// 	run_her_doc();
 				if (command != 0)
 					dup2(g_msh.pipefd[(command - 1) * 2], STDIN_FILENO);
 				if (command != g_msh.cmd_number - 1)
@@ -151,8 +151,6 @@ void	execute_cmd()
 				command_runing();
 			}
 		}
-		else
-			run_builtins();
 		command++;
 		g_msh.cmd = g_msh.cmd->next;
 	}
@@ -160,7 +158,7 @@ void	execute_cmd()
 	waitpid(g_msh.pid, (int *)&g_msh.exit_status, 0);
 	if (WIFEXITED(g_msh.exit_status))
 		g_msh.exit_status =  WEXITSTATUS(g_msh.exit_status); 
-	if (WIFSIGNALED(g_msh.exit_status))
+	else if (WIFSIGNALED(g_msh.exit_status))
 		g_msh.exit_status = WTERMSIG(g_msh.exit_status) + 128;
 }
 
@@ -176,6 +174,4 @@ void	execute(t_command *cmds)
 	execute_cmd();
 	data_management(cmds ,NO_ENV, NULL);
 	g_msh.cmd_number = 0;
-	
-	//return (0);
 }
