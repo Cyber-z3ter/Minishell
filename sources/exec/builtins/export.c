@@ -100,8 +100,8 @@ int	export_vname()
 				node = create_env_node(table, g_msh.cmd->cmd[i]);
 				add_env_back(&g_msh.dup_envp, node);
 			}
+
 		}
-		free(table);
 		i++;
 	}
 	return (0);

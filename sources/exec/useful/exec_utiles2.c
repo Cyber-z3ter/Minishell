@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:08:13 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/02 22:40:28 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 00:44:38 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ int	already_there(t_env **head)
 /* **************************************************** */
 t_env	*create_env_node(char **env, char *str)
 {
+	int		i;
 	t_env	*new_node;
 
+	i = 0;
 	if (!env[1])
 		env[1] = ft_strdup("");
 	new_node = (t_env *)malloc(sizeof(t_env));
@@ -71,6 +73,9 @@ t_env	*create_env_node(char **env, char *str)
 		new_node->key = ft_strdup(ft_strjoin(env[0], "="));
 	new_node->value = ft_strdup(env[1]);
 	new_node->next = NULL;
+	free(env[0]);
+	free(env[1]);
+	free(env);
 	return (new_node);
 }
 
@@ -114,6 +119,7 @@ void	get_env(char **env)
 		}
 		add_env_back(&g_msh.dup_envp, node);
 		i++;
+		
 	}
 }
 
