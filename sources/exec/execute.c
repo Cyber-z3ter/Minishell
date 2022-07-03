@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 17:54:33 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:25:10 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	execute_cmd()
 	int status = 0;
 	int pid;
 	set_pipes();
+	g_msh.signal = 5;
 	while (g_msh.cmd)
 	{
 		if (g_msh.cmd_number == 1 && g_msh.cmd->cmd_type != EXECVE)
@@ -138,6 +139,7 @@ void	execute_cmd()
 			g_msh.pid = fork();	
 			if (g_msh.pid == 0)
 			{
+				g_msh.signal = 2;
 				special_futers_for_cmd();
 				if (command != 0)
 					dup2(g_msh.pipefd[(command - 1) * 2], STDIN_FILENO);
@@ -156,6 +158,8 @@ void	execute_cmd()
 	}
 	close_pipes();
 	waitpid(g_msh.pid, (int *)&g_msh.exit_status, 0);
+	waitpid(-1, NULL, 0);
+	g_msh.signal = 0;
 	if (WIFEXITED(g_msh.exit_status))
 		g_msh.exit_status =  WEXITSTATUS(g_msh.exit_status);
 	else if (WIFSIGNALED(g_msh.exit_status))

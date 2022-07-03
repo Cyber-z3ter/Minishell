@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:03:52 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 18:16:37 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:26:33 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 char 	*buff_check(char *str)
 {	
 	int 	i;
+	int		len;
 	char	*sub;
 	char	*env;
 
 	i = 0;
+	len = ft_strlen(str);
 	while (str[++i])
 	{
-		if (is_dollar(str) >= 0 && str[0] != '\'')
+		if (is_dollar(str) >= 0)
 		{
 			sub = dollar_substr(str);
 			env = dollar_substr1(str);
@@ -33,7 +35,6 @@ char 	*buff_check(char *str)
 		}
 	}
 	return(str);
-	//printf("%s\n", str);
 }
 
 
@@ -42,7 +43,7 @@ void	her_handle(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printf("\033[K$>\n");
+		printf("\n");
 		exit(0);
 	}
 }
@@ -50,14 +51,17 @@ void	her_doc(char *argv, int fd)
 {
 	char	*buff;
 	char	*str;
+	int 	len;
 
+	g_msh.signal = 1;
 	while (1)
 	{
 		signal(SIGINT, her_handle);
 		 buff = readline("heredoc> ");
 		if (!buff || !ft_strcmp(buff, argv))
-			break ;
-		buff = ft_strdup (buff_check(buff));
+			break;
+		if ((str[0] != '\'' && str[len] !='\'') || (str[0] != '\"' && str[len] != '\"'))
+			buff = ft_strdup (buff_check(buff));
 		write(fd, buff, ft_strlen(buff));
 		write(fd, "\n", 1);
 		free(buff);
@@ -72,6 +76,7 @@ void	run_her_doc(char **argv, int fd)
 	int i;
 	int	pid;
 	i = 0;
+	g_msh.signal = 5;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -84,4 +89,5 @@ void	run_her_doc(char **argv, int fd)
 		}
 	}
 	waitpid(pid, (int *)&g_msh.exit_status, 0);
+	g_msh.signal = 0;
 }

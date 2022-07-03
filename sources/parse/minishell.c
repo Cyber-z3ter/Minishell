@@ -6,12 +6,13 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 14:10:31 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:35:33 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../includes/minishell.h"
+#include "termios.h"
 
 void display(t_command *node) {
 
@@ -115,6 +116,25 @@ void	ft_prompt(void)
 	}
 }
 
+
+void	hide_ctl()
+{
+	 struct termios attributes;
+
+    tcgetattr(STDIN_FILENO, &attributes);
+    attributes.c_lflag &= ~ECHOCTL;
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
+}
+
+void	show_ctl()
+{
+	 struct termios attributes;
+
+    tcgetattr(STDIN_FILENO, &attributes);
+    attributes.c_lflag |= ECHOCTL;
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
+}
+
 /* **************************************************** */
 /*                        🅼🅰🅸🅽                       */
 /* **************************************************** */
@@ -122,11 +142,14 @@ void	ft_prompt(void)
 
 int	main(int ac, char **av, char **env)
 {
+	g_msh.signal = 0;
 	signal(SIGINT, handle_sig);
 	signal(SIGQUIT, handle_sig);
+	hide_ctl();
 	ft_bzero(&g_msh, sizeof(g_msh));
 	if (!g_msh.my_env)
 		data_management(NULL ,ENV, env);
 	ft_prompt();
+	show_ctl();
 	return (0);
 }
