@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 02:19:20 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:54:33 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	close_pipes()
 void	set_pipes()
 {
 	int i;
-
 	i = 0;
 	if (g_msh.cmd_number > 0)
 	{
@@ -108,7 +107,7 @@ void	set_pipes()
 			quit_minishell(errno, "Cannot allocate memory");
 	}
 	i = 0;
-	while(i < g_msh.cmd_number - 1)
+	while(i <= g_msh.cmd_number - 1)
 	{
 		if(pipe(g_msh.pipefd + 2 * i) < 0)
 			quit_minishell(errno, "Broken pipe");
@@ -124,8 +123,11 @@ void	execute_cmd()
 {
 	int command;
 
+	char *str;
+
 	command = 0;
 	int status = 0;
+	int pid;
 	set_pipes();
 	while (g_msh.cmd)
 	{
@@ -133,12 +135,10 @@ void	execute_cmd()
 			run_builtins();
 		else
 		{
-			g_msh.pid = fork();			
+			g_msh.pid = fork();	
 			if (g_msh.pid == 0)
 			{
 				special_futers_for_cmd();
-				// if (g_msh.cmd->herdoc != 0)
-				// 	run_her_doc();
 				if (command != 0)
 					dup2(g_msh.pipefd[(command - 1) * 2], STDIN_FILENO);
 				if (command != g_msh.cmd_number - 1)
@@ -157,7 +157,7 @@ void	execute_cmd()
 	close_pipes();
 	waitpid(g_msh.pid, (int *)&g_msh.exit_status, 0);
 	if (WIFEXITED(g_msh.exit_status))
-		g_msh.exit_status =  WEXITSTATUS(g_msh.exit_status); 
+		g_msh.exit_status =  WEXITSTATUS(g_msh.exit_status);
 	else if (WIFSIGNALED(g_msh.exit_status))
 		g_msh.exit_status = WTERMSIG(g_msh.exit_status) + 128;
 }

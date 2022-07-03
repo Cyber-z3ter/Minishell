@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:13 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/02 15:03:42 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:47:46 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,14 @@ void	open_files(t_command *node)
 			}
 		}
 		if (tmp->herdoc == 1)
+		{
 			tmp->delims = ft_split(tmp->del, ' ');
+			tmp->infile = open(".temp", O_CREAT | O_RDWR | O_TRUNC, 0666);
+			run_her_doc(tmp->delims, tmp->infile);
+			tmp->infile = open(".temp",  O_RDWR);
+			free_tab(tmp->delims);
+			free(tmp->del);
+		}
 		tmp = tmp->next;
 	}
 }
