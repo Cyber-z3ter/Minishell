@@ -6,7 +6,7 @@
 /*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:01 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 21:38:01 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/07/03 23:28:11 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	expand_dollar(t_command *lst)
 			{
 				info_init(&info, lst->cmd[info.i]);
 				call_expander(&info, lst->cmd[info.i]);
+				free(info.val1);
 				if ((info.j % 2 != 0 && !info.sub) || !all_vars(info.sub))
 				{
 					info.flag = 3;

@@ -6,7 +6,7 @@
 /*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 20:27:23 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/07/03 23:26:57 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void display(t_command *node) {
 		// 	}
 		// }
    		tmp = tmp->next;
-		   printf("\n");
 	}
 }
 
@@ -108,7 +107,7 @@ void	ft_prompt(void)
 		if (command_checker(command))
 			rl_on_new_line();
 		cmds = parser(command);
-		//display(cmds);
+		// display(cmds);
 		 if (g_msh.syntax_err && cmds)
 			 execute(cmds);
 		clear_cmds(&cmds);

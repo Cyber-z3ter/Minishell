@@ -6,7 +6,7 @@
 /*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:02 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 21:41:41 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/07/03 23:24:16 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void                ft_break(int *flag, char *sub);
 void                info_init(t_dinfo *info, char *cmd);
 void                call_expander(t_dinfo *info, char *com);
 int                 all_vars(char *ptr);
-void                replace_id(char *ptr, t_dinfo info);
+void                replace_id(char *ptr, t_dinfo *info);
 char                *get_id(int p);
 
 //files creation
