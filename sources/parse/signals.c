@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:36 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 19:28:43 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:35:04 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/minishell.h"
 
 void	handle_sig(int sig)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (sig == SIGINT && g_msh.signal == 0)
@@ -26,9 +25,7 @@ void	handle_sig(int sig)
 		rl_redisplay();
 	}
 	if (sig == SIGINT && g_msh.signal == 5)
-	{
 		i++;
-	}
 	if (sig == SIGQUIT)
 	{
 		rl_on_new_line();

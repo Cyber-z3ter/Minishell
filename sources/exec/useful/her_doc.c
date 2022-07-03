@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   her_doc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:03:52 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 19:26:33 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:19:55 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char 	*buff_check(char *str)
 				replace_sub(&str, sub, get_env1(env));
 			else if (!get_env1(env))
 				replace_sub(&str, sub, "");
-			ft_expand(&str, sub, env);
+			replace_sub(&str, sub, env);
 		}
 	}
 	return(str);

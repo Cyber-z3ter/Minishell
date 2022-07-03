@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_creation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:13 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 17:47:46 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:26:01 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_outfile(char *file)
 	return (0);
 }
 
-int	ft_open(t_command *node)
+void	ft_open(t_command *node)
 {
 	int	i;
 
@@ -34,18 +34,10 @@ int	ft_open(t_command *node)
 			create_delimters(node, &i);
 		else if (!ft_strcmp1(node->cmd[i], "<"))
 		{
-			// if (access(node->cmd[i + 1], F_OK) && node->cmd[i - 1] == 0)
-			// 	printf("shell: no such file: %s\n", node->cmd[i + 1]);
 			if (open_redirect_input(node->cmd[i + 1], node))
-			{
-				//ft_bzero(node->cmd[i], ft_strlen(node->cmd[i]));
-			ft_free(node->cmd[i + 1], node->cmd[i]);
-				//return (i + 2);
-			}
-			//open_redirect_input(node->cmd[i + 1], node);
+				ft_free(node->cmd[i + 1], node->cmd[i]);
 		}
 	}
-	return (-1);
 }
 
 void	open_files(t_command *node)
@@ -59,21 +51,13 @@ void	open_files(t_command *node)
 	{
 		tmp->infile = 0;
 		tmp->outfile = 1;
-		flag = ft_open(tmp);
-		if (flag >= 0)
-		{
-			while (tmp->cmd[flag])
-			{
-				ft_bzero(tmp->cmd[flag], ft_strlen(tmp->cmd[flag]));
-				flag++;
-			}
-		}
+		ft_open(tmp);
 		if (tmp->herdoc == 1)
 		{
 			tmp->delims = ft_split(tmp->del, ' ');
 			tmp->infile = open(".temp", O_CREAT | O_RDWR | O_TRUNC, 0666);
 			run_her_doc(tmp->delims, tmp->infile);
-			tmp->infile = open(".temp",  O_RDWR);
+			tmp->infile = open(".temp", O_RDWR);
 			free_tab(tmp->delims);
 			free(tmp->del);
 		}

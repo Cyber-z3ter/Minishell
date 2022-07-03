@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 19:35:33 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:27:23 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_prompt(void)
 			rl_on_new_line();
 		cmds = parser(command);
 		//display(cmds);
-		 if (g_msh.syntax_err)
+		 if (g_msh.syntax_err && cmds)
 			 execute(cmds);
 		clear_cmds(&cmds);
 		free (command);
@@ -144,7 +144,7 @@ int	main(int ac, char **av, char **env)
 {
 	g_msh.signal = 0;
 	signal(SIGINT, handle_sig);
-	signal(SIGQUIT, handle_sig);
+	signal(SIGQUIT, SIG_IGN);
 	hide_ctl();
 	ft_bzero(&g_msh, sizeof(g_msh));
 	if (!g_msh.my_env)
