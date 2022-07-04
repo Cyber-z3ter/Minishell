@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 00:12:49 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 09:58:11 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,8 @@ void	execute_cmd()
 	g_msh.signal = 5;
 	while (g_msh.cmd)
 	{
-		if (g_msh.cmd_number == 1 && g_msh.cmd->cmd_type != EXECVE)
-			run_builtins();
+		if (g_msh.cmd_number == 1 && g_msh.cmd->cmd_type != EXECVE) // ~ last builtin command condition
+			run_builtins(); 
 		else
 		{
 			g_msh.pid = fork();	

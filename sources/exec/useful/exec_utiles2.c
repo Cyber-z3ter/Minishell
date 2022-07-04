@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:08:13 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 00:44:38 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 10:07:45 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_env	*create_env_node(char **env, char *str)
 	if (str && strstr(str, "=") == NULL)
 		new_node->key = ft_strdup(env[0]);
 	else
-		new_node->key = ft_strdup(ft_strjoin(env[0], "="));
+		new_node->key = ft_strjoin(env[0], "=");
 	new_node->value = ft_strdup(env[1]);
 	new_node->next = NULL;
 	free(env[0]);
@@ -114,6 +114,8 @@ void	get_env(char **env)
 		node = create_env_node(ft_sp_split(env[i], '='), NULL);
 		if (ft_strncmp(node->key, "OLDPWD=", 8) == 0)
 		{
+			free(node->key);
+			free(node->value);
 			node->key = ft_strtrim(node->key, "=");
 			node->value = ""; 
 		}

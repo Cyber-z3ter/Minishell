@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/04 00:32:33 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 10:39:41 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,35 @@
 #include "../../includes/minishell.h"
 #include "termios.h"
 
-// void display(t_command *node) {
+void display(t_command *node) {
 
-// 	t_command	*tmp;
-// 	int i;
+	t_command	*tmp;
+	int i;
 
-// 	tmp = node;
-// 	while (tmp)
-// 	{
-// 		i = 0;
-// 		while (tmp->cmd[i])
-// 		{
-// 			printf("{%s} => |%d| ==> |i = %d\n|", tmp->cmd[i], tmp->herdoc, i);
-// 			i++;
-// 		}
-// 		printf(" => outfile: [%d] => infile [%d]\n", tmp->outfile, tmp->infile);
-// 		// if (tmp->herdoc == 1)
-// 		// {
-// 		// 	i = 0;
-// 		// 	printf("\n *** herdoc **\n");
-// 		// 	while (tmp->delims[i])
-// 		// 	{
-// 		// 		printf("|%s| ", tmp->delims[i]);
-// 		// 		i++;
-// 		// 	}
-// 		// }
-//    		tmp = tmp->next;
-// 		   printf("\n");
-// 	}
-// }
+	tmp = node;
+	while (tmp)
+	{
+		i = 0;
+		while (tmp->cmd[i])
+		{
+			printf("{%s} => |%d| ==> |i = %d\n|", tmp->cmd[i], tmp->herdoc, i);
+			i++;
+		}
+		printf(" => outfile: [%d] => infile [%d]\n", tmp->outfile, tmp->infile);
+		// if (tmp->herdoc == 1)
+		// {
+		// 	i = 0;
+		// 	printf("\n *** herdoc **\n");
+		// 	while (tmp->delims[i])
+		// 	{
+		// 		printf("|%s| ", tmp->delims[i]);
+		// 		i++;
+		// 	}
+		// }
+   		tmp = tmp->next;
+		   printf("\n");
+	}
+}
 
 
 /* **************************************************** */
@@ -115,7 +115,7 @@ void	ft_prompt(void)
 			rl_on_new_line();
 		cmds = parser(command);
 		//display(cmds);
-		 if (g_msh.syntax_err)
+		 if (g_msh.syntax_err && cmds)
 			 execute(cmds);
 		clear_cmds(&cmds);
 		free (command);
@@ -164,6 +164,7 @@ int	main(int ac, char **av, char **env)
 	if (!g_msh.my_env)
 		data_management(NULL ,ENV, env);
 	ft_prompt();
+	//free_all();
 	show_ctl();
 	return (0);
 }
