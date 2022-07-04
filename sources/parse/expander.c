@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:01 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/02 11:16:28 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 23:28:11 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/minishell.h"
 
@@ -75,46 +74,31 @@ void	replace_sub(char **str, const char *old, const char *new_)
 	free(info.buff);
 }
 
-char	*get_env1(char *env)
+void	expand_dollar(t_command *lst)
 {
-	t_env*ptr;
-	ptr = g_msh.dup_envp;
-	while (ptr)
-	{
-		if (!ft_strcmp1(env, ft_strndup(ptr->key, ft_strlen(ptr->key) - 1)))
-			return(ft_strdup(ptr->value));
-		ptr = ptr->next;
-	}
-	return (NULL);
-}
+	t_dinfo	info;
 
-void	expand_dollar(t_command *node)
-{
-	int		i;
-	char	*sub;
-	char	*env;
-	int		flag;
-
-	while (node)
+	while (lst)
 	{
-		flag = 0;
-		i = -1;
-		while (node->cmd[++i])
+		info.flag = 0;
+		info.i = -1;
+		while (lst->cmd[++info.i])
 		{
-			if (is_dollar(node->cmd[i]) >= 0 && node->cmd[i][0] != '\'')
+			if (is_dollar(lst->cmd[info.i]) >= 0 && lst->cmd[info.i][0] != '\'')
 			{
-				flag = 1;
-				sub = dollar_substr(node->cmd[i]);
-				env = dollar_substr1(node->cmd[i]);
-				if (get_env1(env))
-					replace_sub(&node->cmd[i], sub, get_env1(env));
-				else if (!get_env1(env))
-					replace_sub(&node->cmd[i], sub, "");
-				ft_expand(&node->cmd[i], sub, env);
+				info_init(&info, lst->cmd[info.i]);
+				call_expander(&info, lst->cmd[info.i]);
+				free(info.val1);
+				if ((info.j % 2 != 0 && !info.sub) || !all_vars(info.sub))
+				{
+					info.flag = 3;
+					info.ptr = ft_split(info.sub, '$');
+					fill_tab(info.ptr, &lst->cmd[info.i]);
+				}
 			}
 		}
-		if (flag == 1)
-			ex_free(sub, env);
-		node = node->next;
+		if (info.flag != 0)
+			ex_free(info);
+		lst = lst->next;
 	}
 }

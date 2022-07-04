@@ -6,12 +6,36 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:23:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 02:35:39 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:50:12 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../../includes/minishell.h"
+
+void	print_rest(int i)
+{
+	t_env	*ptr;
+	char	*tab1;
+	char	*tab2;
+
+	ptr = g_msh.dup_envp;
+	while (ptr)
+	{
+		tab1 = ft_strtrim(ptr->key, "=");
+		tab2 = ft_strtrim(g_msh.sort_env[i], "=");
+		if (ft_strcmp(tab1, tab2) == 0)
+		{
+			if (ft_strchr(ptr->key, '='))
+				printf("%s\"%s\"\n", ptr->key, ptr->value);
+			else
+				printf("%s\n", ptr->key);
+		}
+		free(tab1);
+		free(tab2);
+		ptr = ptr->next;
+	}
+}
 
 /* **************************************************** */
 /*                       🅴🅽🆅                          */
@@ -27,12 +51,12 @@ int	tab_len(char **tab)
 	return (i);
 }
 
-void	sort()
+void	sort(void)
 {
-	int 	i;
+	int		i;
 	int		j;
 	char	*temp;
-   
+
 	i = 0;
 	while (g_msh.sort_env[i] != NULL)
 	{
@@ -41,7 +65,7 @@ void	sort()
 		{
 			if (ft_strcmp(g_msh.sort_env[i], g_msh.sort_env[j]) > 0)
 			{
-				temp =  g_msh.sort_env[i];
+				temp = g_msh.sort_env[i];
 				g_msh.sort_env[i] = g_msh.sort_env[j];
 				g_msh.sort_env[j] = temp;
 			}
@@ -55,29 +79,16 @@ void	sort()
 /*                       🅴🅽🆅                          */
 /* **************************************************** */
 
-void	export_env()
+void	export_env(void)
 {
-    t_env   *ptr;
 	int		i;
-	
+
 	i = 0;
-	ptr = g_msh.dup_envp;
 	sort();
-	while(g_msh.sort_env[i])
+	while (g_msh.sort_env[i])
 	{
 		printf("%s", "declare -x ");
-		ptr = g_msh.dup_envp;
-		while (ptr)
-		{
-			if (ft_strcmp(ft_strtrim(ptr->key, "="),ft_strtrim(g_msh.sort_env[i], "=")) == 0)
-			{
-				if (ft_strchr(ptr->key, '='))
-					printf("%s\"%s\"\n", ptr->key, ptr->value);  
-				else
-					printf("%s\n", ptr->key);
-			}
-			ptr = ptr->next;
-		}
+		print_rest(i);
 		i++;
 	}
 }
@@ -85,11 +96,12 @@ void	export_env()
 /* **************************************************** */
 /*                       🅴🅽🆅                          */
 /* **************************************************** */
-int    env(int state)
-{
-    t_env *ptr;
 
-    ptr = g_msh.dup_envp;
+int	env(int state)
+{
+	t_env	*ptr;
+
+	ptr = g_msh.dup_envp;
 	if (state == ADD_FUTERS)
 		export_env();
 	else
@@ -98,14 +110,14 @@ int    env(int state)
 			return (quit_minishell(1, "env: No such file or directory"), 1);
 		else
 		{
-			while (ptr!= NULL)
+			while (ptr != NULL)
 			{
 				if (strstr(ptr->key, "=") != NULL)
 				{
 					printf("%s", ptr->key);
 					printf("%s\n", ptr->value);
 				}
-				ptr= ptr->next;
+				ptr = ptr->next;
 			}
 		}
 	}

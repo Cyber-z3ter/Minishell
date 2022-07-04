@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:55:41 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 13:27:12 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:03:33 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	print_error(void)
 {
-	printf("%s\n", errors);
-	g_msh.syntax_err = 0;
-	//quit_minishell(258, NULL);
+	printf("%s\n", ERRORS);
 	rl_on_new_line();
 }
 
@@ -45,7 +43,6 @@ int	command_checker(char *command)
 			quotes = 0;
 		else if (quotes == 0 && (command[i] == '\\' || command[i] == ';'))
 			return (1);
-			
 	}
 	if (quotes != 0)
 		return (1);

@@ -6,11 +6,19 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:04:55 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/02 22:04:27 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 23:00:34 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../includes/minishell.h"
+#include "../../../includes/minishell.h"
+
+void	first(t_command **ptr)
+{
+	if (!(*ptr)->cmd[0])
+		(*ptr)->cmd_type = -1;
+}
+
+
 
 /* **************************************************** */
 /*                                                      */
@@ -31,11 +39,11 @@ t_command	*ft_new(void *content)
 /*                                                      */
 /* **************************************************** */
 
-t_command *last(t_command *ptr)
+t_command	*last(t_command *ptr)
 {
-    while (ptr->next)
-        ptr = ptr->next;
-    return (ptr);
+	while (ptr->next)
+		ptr = ptr->next;
+	return (ptr);
 }
 
 /* **************************************************** */
@@ -59,13 +67,12 @@ void	ft_add_back(t_command **lst, t_command *new)
 /*                                                      */
 /* **************************************************** */
 
-void	catagorize()
+void	catagorize(void)
 {
-	t_command *ptr;
+	t_command	*ptr;
 
 	ptr = g_msh.cmd;
-	if (!ptr->cmd[0])
-		ptr->cmd_type = -1;
+	first(&ptr);
 	while (ptr && ptr->cmd[0])
 	{
 		if (ft_strcmp(ptr->cmd[0], "exit") == 0)
@@ -85,6 +92,6 @@ void	catagorize()
 		else
 			ptr->cmd_type = EXECVE;
 		g_msh.cmd_number++;
-		ptr = ptr->next; 
+		ptr = ptr->next;
 	}
 }

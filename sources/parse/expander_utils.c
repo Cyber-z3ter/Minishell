@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:55:56 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 01:33:59 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:46:29 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	is_dollar(char *str)
 {
 	int	i;
 
+	if (ft_strcmp(str, "$?") == 0)
+		return (-1);
 	i = 0;
 	while (str[i])
 	{
-		if (ft_strcmp(str, "$?") == 0)
-			return (-1);
 		if (str[i] == '$')
 			return (i);
 		i++;

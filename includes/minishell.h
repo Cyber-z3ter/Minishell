@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:07:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 20:16:17 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:26:30 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		echo();
 void	error(char *str);
 int     pwd();
 int     env(int state);
-void	free_env(t_list *env_list);
+
 void	cd();
 void	export();
 void	unset();
@@ -79,6 +79,8 @@ t_env	    *create_env_node(char **env, char *str);
 void        run_her_doc();
 char	    *get_env1(char *env);
 void        free_all();
+void	    free_env();
+void	    old_pwd(char **key, char **value, char *pwd);
 
 
 

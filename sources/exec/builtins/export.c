@@ -1,29 +1,30 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 16:49:09 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/06 14:01:54 by houazzan         ###   ########.fr       */
+/*   Created: 2022/07/04 22:43:07 by houazzan          #+#    #+#             */
+/*   Updated: 2022/07/04 23:22:01 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../../includes/minishell.h"
 
 
-int	loop_over_env(int  add_to, char **table, char *str)
+int	loop_over_env(int add_to, char **table, char *str)
 {
 	t_env	*ptr;
+	char	*ptr1;
 	int		i;
 	int		j;
 
 	ptr = g_msh.dup_envp;
 	while (ptr != NULL)
 	{
-		if (ft_strcmp(table[0], ft_strtrim(ptr->key, "=")) == 0)
+		ptr1 = ft_strtrim(ptr->key, "=");
+		if (ft_strcmp(table[0], ptr1) == 0)
 		{
 			if (strstr(str, "=") == NULL)
 				return (1);
@@ -33,18 +34,19 @@ int	loop_over_env(int  add_to, char **table, char *str)
 				ptr->value = ft_strdup(table[1]);
 			else
 				ptr->value = "\0";
-			return(1);
+			return (1);
 		}
+		free(ptr1);
 		ptr = ptr->next;
 	}
-	return(0);
+	return (0);
 }
 
 
 
-int already_exist(char **table, char *str)
+int	already_exist(char **table, char *str)
 {
-	int add_to;
+	int	add_to;
 
 	add_to = 0;
 	if (ft_strchr(table[0], '+'))
@@ -53,7 +55,7 @@ int already_exist(char **table, char *str)
 		add_to = 1;
 	}
 	if (loop_over_env(add_to, table, str) == 1)
-		return(1);
+		return (1);
 	return (0);
 }
 
@@ -63,18 +65,22 @@ int already_exist(char **table, char *str)
 
 int	invalid_vn(char	*table)
 {
-	int i;
-	
+	int	i;
+
 	i = 1;
-	if (ft_strlen(ft_strchr(table, '+')) >  1 || (!ft_isalpha(table[0]) && table[0] != '_'))
-		return (quit_minishell(1, ft_strjoin(ft_strjoin("export ", table)," : not a valid identifier")), 1);
+	if (ft_strlen(ft_strchr(table, '+')) > 1 || \
+		(!ft_isalpha(table[0]) && table[0] != '_'))
+		return (quit_minishell(1, ft_strjoin(ft_strjoin \
+		("export ", table), " : not a valid identifier")), 1);
 	while (table[i])
 	{
-		if (!ft_isdigit(table[i]) && !ft_isalpha(table[i]) && table[i] != '_' && table[i] != '+')
-			return (quit_minishell(1, ft_strjoin(ft_strjoin("export ", table),": not a valid identifier")), 1);
+		if (!ft_isdigit(table[i]) && !ft_isalpha(table[i]) && \
+			table[i] != '_' && table[i] != '+')
+			return (quit_minishell(1, ft_strjoin(ft_strjoin \
+			("export ", table), ": not a valid identifier")), 1);
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
 
@@ -83,11 +89,11 @@ int	invalid_vn(char	*table)
 /* **************************************************** */
 
 
-int	export_vname()
+int	export_vname(void)
 {
-	char 	**table;
-	t_env 	*node;
-	int 	i;
+	char	**table;
+	t_env	*node;
+	int		i;
 
 	i = 1;
 	while (g_msh.cmd->cmd[i] != NULL) 
@@ -100,7 +106,6 @@ int	export_vname()
 				node = create_env_node(table, g_msh.cmd->cmd[i]);
 				add_env_back(&g_msh.dup_envp, node);
 			}
-
 		}
 		i++;
 	}
@@ -111,7 +116,7 @@ int	export_vname()
 /*                    🅴🆇🅿🅾🆁🆃                        */
 /* **************************************************** */
 
-void	export()
+void	export(void)
 {
 	if (g_msh.cmd->cmd[1] == NULL)
 		env(ADD_FUTERS);
@@ -120,6 +125,3 @@ void	export()
 			quit_minishell(1, "variable name undefined");
 }
 
-
- 
- 

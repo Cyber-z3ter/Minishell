@@ -1,33 +1,34 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   unset.c                                            :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2022/06/11 13:14:52 by houazzan          #+#    #+#             */
-// /*   Updated: 2022/06/13 10:54:53 by houazzan         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/11 13:14:52 by houazzan          #+#    #+#             */
+/*   Updated: 2022/07/04 23:56:40 by houazzan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
 int	first_variable(char *to_remove)
 {
-	t_env *ptr_del;
-	t_env *ptr;
-	ptr = g_msh.dup_envp;
-	if (ft_strcmp(ft_strtrim(ptr->key, "="), to_remove) == 0)
+	t_env	*ptr_del;
+	t_env	**ptr;
+	
+	ptr = &g_msh.dup_envp;
+	if (ft_strcmp(ft_strtrim((*ptr)->key, "="), to_remove) == 0)
 	{
-		ptr_del = ptr;
-		ptr = ptr->next;
+		ptr_del = *ptr;
+		(*ptr) = (*ptr)->next;
 		if(ptr_del->value)
 			free(ptr_del->value);
 		free(ptr_del->key);
 		free(ptr_del);
 		return (0);
 	}
-	g_msh.dup_envp = ptr;
+	g_msh.dup_envp = *ptr;
 	return(1);
 }
 
@@ -62,6 +63,7 @@ int      remove_variable(char *to_remove)
 		}
 		ptr = ptr->next;
 	}
+	ptr = g_msh.dup_envp;
 	return (0);
 }
 

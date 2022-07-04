@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:08:13 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 10:07:45 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 00:14:50 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,26 @@ void	env_list_to_array()
 	int i;
 	int count;
 	t_env *ptr;
+	char *tmp;
 
 	i = 0;
+	system("leaks minishell");
 	ptr = g_msh.dup_envp;
 	count = ft_env_size(ptr);
-	
 	g_msh.my_env = (char **) ft_calloc(count + 1, sizeof(char *));
 	g_msh.sort_env = (char **) ft_calloc(count + 1, sizeof(char *));
+	if (!g_msh.my_env || !g_msh.sort_env)
+	{
+		 quit_minishell(errno, "Cannot allocate memory");
+		 exit(1);
+	}
 	while(ptr)
 	{
-		g_msh.my_env[i] = ft_strdup(ft_strjoin(ptr->key, ptr->value));
+		g_msh.my_env[i] = ft_strjoin(ptr->key, ptr->value);
 		g_msh.sort_env[i] = ft_strdup(ptr->key);
 		ptr = ptr->next;
 		i++;
 	}
-	i = 0;
 }
 
 
@@ -58,24 +63,32 @@ int	already_there(t_env **head)
 /* **************************************************** */
 /*                   🅲🆁🅴🅰🆃🅴_🅽🅾🅳🅴                  */
 /* **************************************************** */
+
 t_env	*create_env_node(char **env, char *str)
 {
 	int		i;
 	t_env	*new_node;
+	char 	*ptr;
 
 	i = 0;
 	if (!env[1])
 		env[1] = ft_strdup("");
 	new_node = (t_env *)malloc(sizeof(t_env));
 	if (str && strstr(str, "=") == NULL)
-		new_node->key = ft_strdup(env[0]);
+		new_node->key = ft_strdup (env[0]);
 	else
 		new_node->key = ft_strjoin(env[0], "=");
-	new_node->value = ft_strdup(env[1]);
+	new_node->value = ft_strdup (env[1]);
 	new_node->next = NULL;
 	free(env[0]);
 	free(env[1]);
-	free(env);
+	free(env);	// i = -1;
+	// while (env[++i])
+	// 	free(env[i]);
+	// env[0] = NULL;
+	// env[1] = NULL;
+	// free(env);
+	// env = NULL;
 	return (new_node);
 }
 
@@ -105,8 +118,10 @@ void	add_env_back(t_env **head, t_env *new_node)
 void	get_env(char **env)
 {
 	t_env	*node;
+	char 	*ptr;
+	char 	*ptr1;
 	int		i;
-	
+
 	i = 0;
 	g_msh.dup_envp = NULL;
 	while (env[i])
@@ -114,14 +129,17 @@ void	get_env(char **env)
 		node = create_env_node(ft_sp_split(env[i], '='), NULL);
 		if (ft_strncmp(node->key, "OLDPWD=", 8) == 0)
 		{
+			ptr = ft_strdup(node->key);
 			free(node->key);
 			free(node->value);
-			node->key = ft_strtrim(node->key, "=");
-			node->value = ""; 
+			ptr1 = ft_strtrim(ptr, "=");
+			node->key = ptr1;
+			node->value = "";
+			free(ptr);
+			free(ptr1);
 		}
 		add_env_back(&g_msh.dup_envp, node);
 		i++;
-		
 	}
 }
 

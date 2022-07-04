@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:08:16 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 09:58:11 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 00:16:13 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,10 @@ void	close_pipes()
 /*                                                      */
 /* **************************************************** */
 
-void	set_pipes()
+void	set_pipes(void)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	if (g_msh.cmd_number > 0)
 	{
@@ -128,7 +129,8 @@ void	execute_cmd()
 	command = 0;
 	int status = 0;
 	int pid;
-	set_pipes();
+	if (g_msh.cmd_number > 1 && g_msh.cmd->cmd_type == EXECVE)
+		set_pipes();
 	g_msh.signal = 5;
 	while (g_msh.cmd)
 	{
@@ -174,8 +176,9 @@ void	execute_cmd()
 void	execute(t_command *cmds)
 {
 	g_msh.pipe_id = 0;
-	data_management(cmds ,NO_ENV, NULL);
+	data_management(cmds, NO_ENV, NULL);
 	execute_cmd();
-	data_management(cmds ,NO_ENV, NULL);
+	free_env();
+	//data_management(cmds, NO_ENV, NULL);
 	g_msh.cmd_number = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/04 10:39:41 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 23:37:37 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,44 @@ void display(t_command *node) {
 }
 
 
-/* **************************************************** */
-/*                    🅵🆃_🅻🅴🆇🅴🆁                     */
-/* **************************************************** */
+// 	tmp = node;
+// 	while (tmp)
+// 	{
+// 		i = 0;
+// 		while (tmp->cmd[i])
+// 		{
+// 			printf("{%s} => |%d| ==> |i = %d\n|", tmp->cmd[i], tmp->herdoc, i);
+// 			i++;
+// 		}
+// 		printf(" => outfile: [%d] => infile [%d]\n", tmp->outfile, tmp->infile);
+// 		// if (tmp->herdoc == 1)
+// 		// {
+// 		// 	i = 0;
+// 		// 	printf("\n *** herdoc **\n");
+// 		// 	while (tmp->delims[i])
+// 		// 	{
+// 		// 		printf("|%s| ", tmp->delims[i]);
+// 		// 		i++;
+// 		// 	}
+// 		// }
+//    		tmp = tmp->next;
+// 	}
+// }
+
+/*                         LEXER.                       */
 
 t_token	*ft_lexer(char *line)
 {
 	t_token	*list;
 	char	*cmd;
-
+	
 	cmd = ft_strtrim(line, " ");
 	list = ft_tokens(cmd);
 	if (!syntax_validation(list))
 	{
+		g_msh.syntax_err = 1;
 		list_clear(&list);
 		print_error();
-		return (NULL);
 	}
 	free(cmd);
 	return (list);
@@ -110,13 +132,17 @@ void	ft_prompt(void)
 			ctrl_d(command);
 		ft_check(command);
 		if (!ft_strlen(command))
+		{
+			free(command);
 			continue;
+		}
 		if (command_checker(command))
 			rl_on_new_line();
 		cmds = parser(command);
 		//display(cmds);
-		 if (g_msh.syntax_err && cmds)
+		 if (cmds)
 			 execute(cmds);
+		//system("leaks minishell");
 		clear_cmds(&cmds);
 		free (command);
 	}
@@ -158,13 +184,14 @@ int	main(int ac, char **av, char **env)
 {
 	g_msh.signal = 0;
 	signal(SIGINT, handle_sig);
-	signal(SIGQUIT, handle_sig);
+	signal(SIGQUIT, SIG_IGN);
 	hide_ctl();
 	ft_bzero(&g_msh, sizeof(g_msh));
 	if (!g_msh.my_env)
 		data_management(NULL ,ENV, env);
 	ft_prompt();
-	//free_all();
 	show_ctl();
+	free_all();
+	free_env();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:58:56 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 00:28:24 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:28:24 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 /*                   🅷🆈🅿🅷🅴🅽_🅴🆇🅿🅰🅽🅳              */
 /* **************************************************** */
 
-void	hyphen_expand()
+void	hyphen_expand(void)
 {
 	char	*old_pwd;
 	t_env	*ptr;
-	
+
 	ptr = g_msh.dup_envp;
-	
+
 	old_pwd = 0;
 	while (ptr != NULL)
 	{
@@ -43,34 +43,34 @@ void	change_env(char *c_pwd)
 	char	*pwd;
 	t_env	*ptr;
 
+
 	ptr = g_msh.dup_envp;
 	while (ptr != NULL)
 	{
 		if (ft_strcmp(ptr->key, "PWD=") == 0)
 		{
 			pwd = ft_strdup(ptr->value);
+			free(ptr->value);
 			ptr->value = ft_strdup(c_pwd);
 		}
-		if (ft_strcmp(ptr->key, "OLDPWD=") == 0 || ft_strcmp(ptr->key, "OLDPWD") == 0)
-		{
-			if (ft_strcmp(ptr->key, "OLDPWD") == 0)
-				ptr->key = ft_strjoin(ptr->key, "=");
-			ptr->value = ft_strdup(pwd);
-		}
+		if (ft_strcmp(ptr->key, "OLDPWD=") == 0 || \
+			ft_strcmp(ptr->key, "OLDPWD") == 0)
+			old_pwd(&ptr->key, &ptr->value, pwd);
 		ptr = ptr->next;
 	}
-	ptr = g_msh.dup_envp;
+	free(pwd);
 }
 
 /* **************************************************** */
 /*              🅲🅳_🆆🅸🆃🅷_🅾🅿🅴🆁🅰🅽🅳🆂               */
 /* **************************************************** */
 
-int cd_with_operands(char *c_pwd)
+int	cd_with_operands(char *c_pwd)
 {
-	int old_pwd;
+	int	old_pwd;
 
 	old_pwd = 0;
+	c_pwd = getcwd(NULL, 0);
 	if (ft_strcmp(g_msh.cmd->cmd[1], "-") == 0)
 	{
 		hyphen_expand();
@@ -81,25 +81,36 @@ int cd_with_operands(char *c_pwd)
 	if (chdir(g_msh.cmd->cmd[1]) != 0)
 		return (quit_minishell(127, strerror(errno)), errno);
 	else
-		if ((c_pwd = getcwd(NULL, 0)) == NULL)
+		if (c_pwd == NULL)
 			return (quit_minishell(127, strerror(errno)), errno);
 	change_env(c_pwd);
 	if (old_pwd == 1)
 		printf("%s\n", c_pwd);
+	free(c_pwd);
 	return (0);
 }
 /* **************************************************** */
 /*              🅲🅳_🅽🅾_🅾🅿🅴🆁🅰🅽🅳🆂                  */
 /* **************************************************** */
 
-int cd_no_operands(char *c_pwd)
+int	cd_no_operands(char *c_pwd)
 {
-	if (chdir(getenv("HOME")) != 0)
-		return (quit_minishell(errno, strerror(errno)), errno);
+	char	*tab;
+
+	c_pwd = getcwd(NULL, 0);
+	tab = get_env1("HOME");
+	if (chdir(tab) != 0)
+		return (quit_minishell(errno, strerror(errno)), \
+			free(c_pwd), free(tab), errno);
 	else
-		if ((c_pwd = getcwd(NULL, 0)) == NULL)
-			return (quit_minishell(errno, strerror(errno)), errno);
+	{
+		if (c_pwd == NULL)
+			return (quit_minishell(errno, strerror(errno)), \
+			free (c_pwd), free(tab), errno);
+	}
 	change_env(c_pwd);
+	free(c_pwd);
+	free(tab);
 	return (0);
 }
 
@@ -107,17 +118,18 @@ int cd_no_operands(char *c_pwd)
 /*                          🅲🅳                         */
 /* **************************************************** */
 
-void	cd()
+void	cd(void)
 {
 	char	*c_pwd;
-    int     i;
+	int		i;
 
-    i = 1;
+	i = 1;
 	c_pwd = malloc(sizeof(char) * 1024);
-    if (!c_pwd)
-       quit_minishell(errno, strerror(errno));
+	if (!c_pwd)
+		quit_minishell(errno, strerror(errno));
 	if (g_msh.cmd->cmd[i] != NULL)
-        cd_with_operands(c_pwd);
-	else 
+		cd_with_operands(c_pwd);
+	else
 		cd_no_operands(c_pwd);
+	free(c_pwd);
 }

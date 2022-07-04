@@ -10,11 +10,12 @@ PARSE_FILES = sources/parse/
 E_SRC  = execute.c useful/quite.c useful/free_list.c useful/exec_utiles.c useful/exec_utiles1.c useful/exec_utiles2.c\
 		 useful/exec_utiles3.c useful/her_doc.c\
 		 useful/non_execve.c builtins/echo.c builtins/pwd.c builtins/env.c builtins/cd.c builtins/export.c builtins/unset.c builtins/exit.c \
+			builtins/cd_utiles.c
 	   
 	   
 P_SRC  =  minishell.c checker.c list_utils.c lis_utils2.c tokenizer.c toknizer_utils.c syntax_validation.c cmd_list_utils.c parser.c parser_utils.c \
 	      expander.c expander_utils.c files_creation.c files_creation_utils.c heredoc_utils.c signals.c remove_unused_tab.c\
-		  expander_utils2.c file_creation_utils2.c\
+		  expander_utils2.c file_creation_utils2.c expander_utils3.c\
 
 
 PARSE = $(addprefix $(PARSE_FILES), $(P_SRC))
