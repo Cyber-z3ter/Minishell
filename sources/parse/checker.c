@@ -6,7 +6,7 @@
 /*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:55:41 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 21:08:10 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/07/04 09:15:50 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_error(void)
 {
-	printf("%s\n", errors);
+	printf("%s\n", ERRORS);
 	g_msh.syntax_err = 0;
 	rl_on_new_line();
 }
