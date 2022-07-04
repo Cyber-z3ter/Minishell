@@ -6,7 +6,7 @@
 /*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/03 23:26:57 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/07/04 10:25:40 by aouhadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,60 @@
 #include "../../includes/minishell.h"
 #include "termios.h"
 
-void display(t_command *node) {
+// void display(t_command *node) {
 
-	t_command	*tmp;
-	int i;
+// // 	t_command	*tmp;
+// // 	int i;
 
-	tmp = node;
-	while (tmp)
-	{
-		i = 0;
-		while (tmp->cmd[i])
-		{
-			printf("{%s} => |%d| ==> |i = %d\n|", tmp->cmd[i], tmp->herdoc, i);
-			i++;
-		}
-		printf(" => outfile: [%d] => infile [%d]\n", tmp->outfile, tmp->infile);
-		// if (tmp->herdoc == 1)
-		// {
-		// 	i = 0;
-		// 	printf("\n *** herdoc **\n");
-		// 	while (tmp->delims[i])
-		// 	{
-		// 		printf("|%s| ", tmp->delims[i]);
-		// 		i++;
-		// 	}
-		// }
-   		tmp = tmp->next;
-	}
-}
+// // 	tmp = node;
+// // 	while (tmp)
+// // 	{
+// // 		i = 0;
+// // 		while (tmp->cmd[i])
+// // 		{
+// // 			printf("{%s} => |%d| ==> |i = %d\n|", tmp->cmd[i], tmp->herdoc, i);
+// // 			i++;
+// // 		}
+// // 		printf(" => outfile: [%d] => infile [%d]\n", tmp->outfile, tmp->infile);
+// // 		// if (tmp->herdoc == 1)
+// // 		// {
+// // 		// 	i = 0;
+// // 		// 	printf("\n *** herdoc **\n");
+// // 		// 	while (tmp->delims[i])
+// // 		// 	{
+// // 		// 		printf("|%s| ", tmp->delims[i]);
+// // 		// 		i++;
+// // 		// 	}
+// // 		// }
+// //    		tmp = tmp->next;
+// // 		   printf("\n");
+// // 	}
+// // }
+
+
+// 	tmp = node;
+// 	while (tmp)
+// 	{
+// 		i = 0;
+// 		while (tmp->cmd[i])
+// 		{
+// 			printf("{%s} => |%d| ==> |i = %d\n|", tmp->cmd[i], tmp->herdoc, i);
+// 			i++;
+// 		}
+// 		printf(" => outfile: [%d] => infile [%d]\n", tmp->outfile, tmp->infile);
+// 		// if (tmp->herdoc == 1)
+// 		// {
+// 		// 	i = 0;
+// 		// 	printf("\n *** herdoc **\n");
+// 		// 	while (tmp->delims[i])
+// 		// 	{
+// 		// 		printf("|%s| ", tmp->delims[i]);
+// 		// 		i++;
+// 		// 	}
+// 		// }
+//    		tmp = tmp->next;
+// 	}
+// }
 
 /*                         LEXER.                       */
 
@@ -61,6 +87,9 @@ t_token	*ft_lexer(char *line)
 	free(cmd);
 	return (list);
 }
+/* **************************************************** */
+/*                      🅿🅰🆁🆂🅴🆁                      */
+/* **************************************************** */
 
 t_command	*parser(char *line)
 {
@@ -87,7 +116,7 @@ t_command	*parser(char *line)
 }
 
 /* **************************************************** */
-/*                🆁🅴🅰🅳_🅲🅾🅼🅼🅰🅽🅳                   */
+/*                   🅵🆃_🅿🆁🅾🅼🅿🆃                     */
 /* **************************************************** */
 
 void	ft_prompt(void)
@@ -116,6 +145,10 @@ void	ft_prompt(void)
 }
 
 
+/* **************************************************** */
+/*                      🅷🅸🅳🅴_🅲🆃🅻                   */
+/* **************************************************** */
+
 void	hide_ctl()
 {
 	 struct termios attributes;
@@ -124,6 +157,10 @@ void	hide_ctl()
     attributes.c_lflag &= ~ECHOCTL;
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
 }
+
+/* **************************************************** */
+/*                    🆂🅷🅾🆆_🅲🆃🅻                      */
+/* **************************************************** */
 
 void	show_ctl()
 {

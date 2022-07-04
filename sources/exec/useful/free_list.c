@@ -13,17 +13,42 @@
 
 # include "../../../includes/minishell.h"
 
-// void    free_env(t_env *env_list)
-// {
-//     t_env *ptr;
-//     t_env *point;
-    
-//     ptr = env_list;
-//     while (ptr)
-//     {
-//         point = ptr->next;
-//         free(ptr);
-//         ptr = point;
-//     }
-//     env_list = NULL;
-// }
+void    free_all()
+{
+// 	t_env     *ptr;
+	int		i;
+
+	i = 0;
+	while (g_msh.separ_path[i])
+	{
+		free(g_msh.separ_path[i]);
+		i++;
+	}
+	free(g_msh.separ_path);
+	free(g_msh.pipefd);
+// 	ptr = g_msh.dup_envp;
+// 	while (ptr)
+// 	{
+// 		free(ptr->key);
+// 		free(ptr->value);
+// 		ptr = ptr->next;
+// 	}
+// 	free(ptr->key);
+// 	free(ptr->value);
+// 	while (g_msh.my_env[i])
+// 	{
+// 		free(g_msh.my_env[i]);
+// 		i++;
+// 	}
+// 	free(g_msh.my_env);
+// 	i = 0;
+// 	while (g_msh.separ_path[i])
+// 	{
+// 		free(g_msh.separ_path[i]);
+// 		i++;
+// 	}
+// 	free(g_msh.separ_path);
+// 	free(g_msh.cmd);
+// 	free(g_msh.token);
+// 	free(g_msh.dup_envp);
+}

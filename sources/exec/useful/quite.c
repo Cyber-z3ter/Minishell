@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:20:05 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 13:04:26 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:15:04 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,4 @@ void	quit_minishell(int exit_code, char *error_msg)
 	}
 	else
 		g_msh.exit_status = exit_code;
-	//free_msh(&g_msh);
-	//exit(exit_code);
 }

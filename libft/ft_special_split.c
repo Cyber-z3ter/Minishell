@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:53:53 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/20 15:26:04 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/03 22:36:58 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	**ft_sp_split(char const *s, char c)
 		n_words = 1;
 	else
 		n_words = ft_sp_wor(r_s, c, size);
-	split = (char **)calloc(n_words + 1, sizeof(char *));
+	split = (char **)ft_calloc(n_words + 1, sizeof(char *));
 	if (split)
 		split = ft_sp_print(n_words, r_s, split, size);
 	free(r_s);

@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:58:56 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 00:39:45 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/04 00:28:24 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	hyphen_expand()
 			old_pwd = ptr->value;
 		ptr = ptr->next;
 	}
-	if (ft_strcmp(g_msh.cmd->cmd[1], "-") == 0)
+	if (ft_strcmp(g_msh.cmd->cmd[1], "-") == 0 && old_pwd)
 		g_msh.cmd->cmd[1] = ft_strdup(old_pwd);
 }
 
@@ -51,9 +51,10 @@ void	change_env(char *c_pwd)
 			pwd = ft_strdup(ptr->value);
 			ptr->value = ft_strdup(c_pwd);
 		}
-		if (ft_strcmp(ptr->key, "OLDPWD") == 0)
+		if (ft_strcmp(ptr->key, "OLDPWD=") == 0 || ft_strcmp(ptr->key, "OLDPWD") == 0)
 		{
-			ptr->key = ft_strjoin(ptr->key, "=");
+			if (ft_strcmp(ptr->key, "OLDPWD") == 0)
+				ptr->key = ft_strjoin(ptr->key, "=");
 			ptr->value = ft_strdup(pwd);
 		}
 		ptr = ptr->next;
@@ -75,7 +76,7 @@ int cd_with_operands(char *c_pwd)
 		hyphen_expand();
 		old_pwd = 1;
 	}
-	if (ft_strcmp(g_msh.cmd->cmd[1], "\0") == 0)
+	if (ft_strcmp(g_msh.cmd->cmd[1], "-") == 0)
 		return (quit_minishell(1, "cd: OLDPWD not set"), 1);
 	if (chdir(g_msh.cmd->cmd[1]) != 0)
 		return (quit_minishell(127, strerror(errno)), errno);
