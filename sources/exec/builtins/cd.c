@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:58:56 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 22:28:24 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:30:26 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	hyphen_expand(void)
 	t_env	*ptr;
 
 	ptr = g_msh.dup_envp;
-
 	old_pwd = 0;
 	while (ptr != NULL)
 	{
@@ -42,7 +41,6 @@ void	change_env(char *c_pwd)
 {
 	char	*pwd;
 	t_env	*ptr;
-
 
 	ptr = g_msh.dup_envp;
 	while (ptr != NULL)

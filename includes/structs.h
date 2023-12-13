@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 13:19:48 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 19:48:54 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/07/05 01:58:21 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
 # include "minishell.h"
-
 
 typedef enum e_token_type		t_token_type;
 
@@ -35,15 +33,15 @@ enum e_token_type
 // ~ ******************** ENUM ************************* ~ \\
 
 typedef enum e_builtin {
-ECHO,
-CD,
-EXPORT,
-UNSET,
-ENV,
-EXIT,
-PWD,
-EXECVE
-} t_builtins;
+	ECHO,
+	CD,
+	EXPORT,
+	UNSET,
+	ENV,
+	EXIT,
+	PWD,
+	EXECVE
+}	t_builtins;
 
 // ~ ********************* 🆃🅾🅺🅴🅽🆂 *********************** ~ \\
 
@@ -53,25 +51,23 @@ typedef struct tokens {
 	char			*data;
 	int				key;
 	int				taille;
-	struct	tokens *next;
-	struct	tokens *prev;
-} t_token;
-
+	struct tokens	*next;
+	struct tokens	*prev;
+}	t_token;
 
 // ~ ********************* 🅲🅾🅼🅼🅰🅽🅳 🆂🆃🆁🆄🅲🆃 *********************** ~ \\
 
 typedef struct command {
-	char    **cmd;
-	int		infile; 
-	int		outfile; 
-	int		herdoc; // ~ there is a herdoc 
-	char 	**delims; // ~ how many delemiters 
-	char	*del; // ~ not my business
-	int		flag; // ~ not my business
-	struct	command *next;
-	t_builtins	cmd_type;
-} t_command;
-
+	char			**cmd;
+	int				infile;
+	int				outfile;
+	int				herdoc;
+	char			**delims;
+	char			*del;
+	int				flag;
+	struct command	*next;
+	t_builtins		cmd_type;
+}	t_command;
 
 // ~ ********************* 🅴🅽🆅🅸🆁🅴🅼🅴🅽🆃 🆂🆃🆁🆄🅲🆃 *********************** ~ \\
 
@@ -82,10 +78,7 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-
-
 // ~ ******************** DOLAR ************************* ~ \\
-
 
 typedef struct dollar
 {
@@ -113,12 +106,12 @@ typedef struct dollar_info
 
 typedef struct unsed
 {
-	int 	count;
+	int		count;
 	int		total;
 	char	**tab;
 	int		i;
 	int		j;	
-} t_remove;
+}	t_remove;
 
 // ~ ********************* 🅶🅻🅾🅱🅰🅻 🆂🆃🆁🆄🅲🆃 *********************** ~ \\
 
@@ -127,11 +120,11 @@ typedef struct s_msh
 	t_env		*dup_envp;
 	t_command	*cmd;
 	t_token		*token;
-	char 		**separ_path;
+	char		**separ_path;
 	char		**my_env;
 	char		**sort_env;
 	int			pid;
-	int  		cmd_number;
+	int			cmd_number;
 	int			pipe_id;
 	int			*pipefd;
 	int			syntax_err;
@@ -139,8 +132,6 @@ typedef struct s_msh
 	int			signal;
 	uint8_t		exit_status;
 }				t_msh;
-
- t_msh g_msh;
-
+t_msh							g_msh;
 
 #endif

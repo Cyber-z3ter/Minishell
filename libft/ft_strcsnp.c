@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:37:07 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/06 16:37:54 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:29:41 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strcspn(const char *s, const char *reject)
 {
-	size_t i;
-	size_t i2;
+	size_t	i;
+	size_t	i2;
 
 	i = 0;
 	i2 = 0;

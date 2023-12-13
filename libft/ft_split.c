@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 19:54:36 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 09:33:09 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:28:49 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	**ft_print(int n_words, char *r_s, char **split, size_t size)
 {
 	size_t	i;
 	int		j;
-
 
 	i = 0;
 	j = 0;

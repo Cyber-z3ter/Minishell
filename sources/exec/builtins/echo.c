@@ -6,10 +6,9 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:06:06 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 22:33:47 by houazzan         ###   ########.fr       */
+/*   Updated: 2023/12/13 23:34:51 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../../includes/minishell.h"
 
@@ -28,9 +27,6 @@ int	status(void)
 	}
 	return (1);
 }
-
-
-
 
 /* **************************************************** */
 /*                   🅲🅷🅴🅲🅺_🅵🅻🅰🅶                   */
@@ -62,7 +58,6 @@ int	echo(void)
 {
 	int	i;
 	int	flag;
-
 	i = 1;
 	flag = 0;
 	if (!status())
@@ -76,14 +71,13 @@ int	echo(void)
 	}
 	while (g_msh.cmd->cmd[i])
 	{
-		printf("%s", g_msh.cmd->cmd[i]);
-		if (g_msh.cmd->cmd[i + 1] != NULL)
-			printf("%s", " ");
+		ft_putstr_fd(g_msh.cmd->cmd[i], g_msh.cmd->outfile);
+		if (g_msh.cmd->cmd[i + 1] != NULL) {
+			ft_putstr_fd(" ", g_msh.cmd->outfile);
+		}
 		i++;
 	}
 	if (flag == 0)
 		printf("\n");
 	return (0);
 }
-
-

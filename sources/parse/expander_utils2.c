@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 10:08:19 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/04 23:12:20 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:31:47 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ typedef struct expander_utils2
 	int		j;
 	char	*tab;
 }	t_expand;
-
 
 void	ex_free(t_dinfo info)
 {

@@ -6,10 +6,9 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:23:29 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 22:50:12 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:20:24 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../../includes/minishell.h"
 
@@ -29,7 +28,10 @@ void	print_rest(int i)
 			if (ft_strchr(ptr->key, '='))
 				printf("%s\"%s\"\n", ptr->key, ptr->value);
 			else
-				printf("%s\n", ptr->key);
+			{
+				if (ptr->key)
+					printf("%s\n", ptr->key);
+			}
 		}
 		free(tab1);
 		free(tab2);

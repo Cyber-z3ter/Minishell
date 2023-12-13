@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:53:53 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/03 22:36:58 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:25:16 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@ int	ft_sp_wor(char *r_s, char c, size_t size)
 	int	word;
 	int	i;
 
-	i = 0;
+	i = -1;
 	word = 0;
-	while (r_s[i] == c)
-	{
+	while (r_s[++i] == c)
 		r_s[i] = '\0';
-		i++;
-	}
 	if (r_s[i] != c && r_s[i] != '\0')
 		word++;
 	if (r_s[i] != c && r_s[size - 1] == c)
@@ -34,9 +31,9 @@ int	ft_sp_wor(char *r_s, char c, size_t size)
 		{
 			word++;
 			r_s[i] = '\0';
-            i++;
-            while (r_s[i] == c)
-                i++;
+			i++;
+			while (r_s[i] == c)
+				i++;
 		}
 		i++;
 	}

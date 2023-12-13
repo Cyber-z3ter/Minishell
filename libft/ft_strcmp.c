@@ -6,7 +6,7 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:46:06 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/03 14:47:21 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:29:18 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
-	int 			i;
+	int				i;
 	unsigned char	*c_s1;
 	unsigned char	*c_s2;
 

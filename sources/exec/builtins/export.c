@@ -6,12 +6,11 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 22:43:07 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/04 23:22:01 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 01:30:51 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
-
 
 int	loop_over_env(int add_to, char **table, char *str)
 {
@@ -41,8 +40,6 @@ int	loop_over_env(int add_to, char **table, char *str)
 	}
 	return (0);
 }
-
-
 
 int	already_exist(char **table, char *str)
 {
@@ -83,11 +80,9 @@ int	invalid_vn(char	*table)
 	return (0);
 }
 
-
 /* **************************************************** */
 /*                 🅴🆇🅿🅾🆁🆃_🆅🅽🅰🅼🅴                  */
 /* **************************************************** */
-
 
 int	export_vname(void)
 {
@@ -96,7 +91,7 @@ int	export_vname(void)
 	int		i;
 
 	i = 1;
-	while (g_msh.cmd->cmd[i] != NULL) 
+	while (g_msh.cmd->cmd[i] != NULL)
 	{
 		table = ft_sp_split(g_msh.cmd->cmd[i], '=');
 		if (!invalid_vn(table[0]))
@@ -124,4 +119,3 @@ void	export(void)
 		if (export_vname())
 			quit_minishell(1, "variable name undefined");
 }
-

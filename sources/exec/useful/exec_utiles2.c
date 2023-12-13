@@ -6,33 +6,30 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:08:13 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/05 00:14:50 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:19:53 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../../includes/minishell.h"
 
-
-void	env_list_to_array()
+void	env_list_to_array(void)
 {
-	int i;
-	int count;
-	t_env *ptr;
-	char *tmp;
+	int		i;
+	int		count;
+	t_env	*ptr;
+	char	*tmp;
 
 	i = 0;
-	system("leaks minishell");
 	ptr = g_msh.dup_envp;
 	count = ft_env_size(ptr);
 	g_msh.my_env = (char **) ft_calloc(count + 1, sizeof(char *));
 	g_msh.sort_env = (char **) ft_calloc(count + 1, sizeof(char *));
 	if (!g_msh.my_env || !g_msh.sort_env)
 	{
-		 quit_minishell(errno, "Cannot allocate memory");
-		 exit(1);
+		quit_minishell(errno, "Cannot allocate memory");
+		exit(1);
 	}
-	while(ptr)
+	while (ptr)
 	{
 		g_msh.my_env[i] = ft_strjoin(ptr->key, ptr->value);
 		g_msh.sort_env[i] = ft_strdup(ptr->key);
@@ -41,23 +38,22 @@ void	env_list_to_array()
 	}
 }
 
-
 /* **************************************************** */
 /*               🅰🅻🆁🅴🅰🅳🆈_🆃🅷🅴🆁🅴                  */
 /* **************************************************** */
 
 int	already_there(t_env **head)
 {
-	t_env *ptr;
+	t_env	*ptr;
 
 	ptr = *(head);
 	while (ptr != NULL)
 	{
-		if(ft_strcmp(ptr->key, "OLDPWD=") == 0)
-			return(1);
+		if (ft_strcmp(ptr->key, "OLDPWD=") == 0)
+			return (1);
 		ptr = ptr->next;
 	}
-	return(0);
+	return (0);
 }
 
 /* **************************************************** */
@@ -68,7 +64,7 @@ t_env	*create_env_node(char **env, char *str)
 {
 	int		i;
 	t_env	*new_node;
-	char 	*ptr;
+	char	*ptr;
 
 	i = 0;
 	if (!env[1])
@@ -82,13 +78,7 @@ t_env	*create_env_node(char **env, char *str)
 	new_node->next = NULL;
 	free(env[0]);
 	free(env[1]);
-	free(env);	// i = -1;
-	// while (env[++i])
-	// 	free(env[i]);
-	// env[0] = NULL;
-	// env[1] = NULL;
-	// free(env);
-	// env = NULL;
+	free(env);
 	return (new_node);
 }
 
@@ -118,8 +108,8 @@ void	add_env_back(t_env **head, t_env *new_node)
 void	get_env(char **env)
 {
 	t_env	*node;
-	char 	*ptr;
-	char 	*ptr1;
+	char	*ptr;
+	char	*ptr1;
 	int		i;
 
 	i = 0;
@@ -133,7 +123,7 @@ void	get_env(char **env)
 			free(node->key);
 			free(node->value);
 			ptr1 = ft_strtrim(ptr, "=");
-			node->key = ptr1;
+			node->key = ft_strdup(ptr1);
 			node->value = "";
 			free(ptr);
 			free(ptr1);
@@ -142,4 +132,3 @@ void	get_env(char **env)
 		i++;
 	}
 }
-

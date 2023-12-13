@@ -6,11 +6,13 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:36 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/04 18:52:57 by houazzan         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:55:48 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include "termios.h"
+#include <readline/readline.h>
 
 void	handle_sig(int sig)
 {
@@ -19,7 +21,7 @@ void	handle_sig(int sig)
 	i = 0;
 	if (sig == SIGINT && g_msh.signal == 0)
 	{
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		printf("\033[K$>\n");
 		rl_on_new_line();
 		rl_redisplay();
@@ -29,7 +31,7 @@ void	handle_sig(int sig)
 	if (sig == SIGQUIT)
 	{
 		rl_on_new_line();
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
@@ -39,4 +41,22 @@ void	ctrl_d(char *str)
 	printf("\033[1A\033[3Cexit\n");
 	free(str);
 	exit(0);
+}
+
+void	hide_ctl(void)
+{
+	struct termios	attributes;
+
+	tcgetattr (STDIN_FILENO, &attributes);
+	attributes.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
+}
+
+void	show_ctl(void)
+{
+	struct termios	attributes;
+
+	tcgetattr(STDIN_FILENO, &attributes);
+	attributes.c_lflag |= ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
 }

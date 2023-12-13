@@ -6,76 +6,17 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:56:27 by aouhadou          #+#    #+#             */
-/*   Updated: 2022/07/04 23:37:37 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 01:55:58 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/minishell.h"
-#include "termios.h"
-
-void display(t_command *node) {
-
-	t_command	*tmp;
-	int i;
-
-	tmp = node;
-	while (tmp)
-	{
-		i = 0;
-		while (tmp->cmd[i])
-		{
-			printf("{%s} => |%d| ==> |i = %d\n|", tmp->cmd[i], tmp->herdoc, i);
-			i++;
-		}
-		printf(" => outfile: [%d] => infile [%d]\n", tmp->outfile, tmp->infile);
-		// if (tmp->herdoc == 1)
-		// {
-		// 	i = 0;
-		// 	printf("\n *** herdoc **\n");
-		// 	while (tmp->delims[i])
-		// 	{
-		// 		printf("|%s| ", tmp->delims[i]);
-		// 		i++;
-		// 	}
-		// }
-   		tmp = tmp->next;
-		   printf("\n");
-	}
-}
-
-
-// 	tmp = node;
-// 	while (tmp)
-// 	{
-// 		i = 0;
-// 		while (tmp->cmd[i])
-// 		{
-// 			printf("{%s} => |%d| ==> |i = %d\n|", tmp->cmd[i], tmp->herdoc, i);
-// 			i++;
-// 		}
-// 		printf(" => outfile: [%d] => infile [%d]\n", tmp->outfile, tmp->infile);
-// 		// if (tmp->herdoc == 1)
-// 		// {
-// 		// 	i = 0;
-// 		// 	printf("\n *** herdoc **\n");
-// 		// 	while (tmp->delims[i])
-// 		// 	{
-// 		// 		printf("|%s| ", tmp->delims[i]);
-// 		// 		i++;
-// 		// 	}
-// 		// }
-//    		tmp = tmp->next;
-// 	}
-// }
-
-/*                         LEXER.                       */
 
 t_token	*ft_lexer(char *line)
 {
 	t_token	*list;
 	char	*cmd;
-	
+
 	cmd = ft_strtrim(line, " ");
 	list = ft_tokens(cmd);
 	if (!syntax_validation(list))
@@ -93,9 +34,9 @@ t_token	*ft_lexer(char *line)
 
 t_command	*parser(char *line)
 {
-	t_token	*list;
+	t_token		*list;
 	t_command	*cmd_list;
-	
+
 	list = ft_lexer(line);
 	if (!list)
 	{
@@ -134,51 +75,21 @@ void	ft_prompt(void)
 		if (!ft_strlen(command))
 		{
 			free(command);
-			continue;
+			continue ;
 		}
 		if (command_checker(command))
 			rl_on_new_line();
 		cmds = parser(command);
-		//display(cmds);
-		 if (cmds)
-			 execute(cmds);
-		//system("leaks minishell");
+		if (cmds)
+			execute(cmds);
 		clear_cmds(&cmds);
 		free (command);
 	}
 }
 
-
-/* **************************************************** */
-/*                      🅷🅸🅳🅴_🅲🆃🅻                   */
-/* **************************************************** */
-
-void	hide_ctl()
-{
-	 struct termios attributes;
-
-    tcgetattr(STDIN_FILENO, &attributes);
-    attributes.c_lflag &= ~ECHOCTL;
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
-}
-
-/* **************************************************** */
-/*                    🆂🅷🅾🆆_🅲🆃🅻                      */
-/* **************************************************** */
-
-void	show_ctl()
-{
-	 struct termios attributes;
-
-    tcgetattr(STDIN_FILENO, &attributes);
-    attributes.c_lflag |= ECHOCTL;
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
-}
-
 /* **************************************************** */
 /*                        🅼🅰🅸🅽                       */
 /* **************************************************** */
-
 
 int	main(int ac, char **av, char **env)
 {
@@ -188,7 +99,7 @@ int	main(int ac, char **av, char **env)
 	hide_ctl();
 	ft_bzero(&g_msh, sizeof(g_msh));
 	if (!g_msh.my_env)
-		data_management(NULL ,ENV, env);
+		data_management(NULL, ENV, env);
 	ft_prompt();
 	show_ctl();
 	free_all();

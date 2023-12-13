@@ -6,25 +6,14 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 08:57:39 by houazzan          #+#    #+#             */
-/*   Updated: 2022/07/05 00:00:54 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 01:33:48 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../../includes/minishell.h"
 
-# include "../../../includes/minishell.h"
-
-void	free_cmd()
+void	free_cmd(void)
 {
-	// int i;
-	// i = 0;
-
-	// while (g_msh.cmd->cmd[i])
-	// {
-	// 	free(g_msh.cmd->cmd[i]);
-	// 	i++;
-	// }
-	// free(g_msh.cmd->cmd);
-
 	t_command	*tmp;
 
 	while ((g_msh.cmd) != NULL)
@@ -38,12 +27,11 @@ void	free_cmd()
 	}
 }
 
-
-void    free_all()
+void	free_all(void)
 {
 	t_env	*ptr;
 	t_env	*de;
-	
+
 	free_cmd();
 	ptr = g_msh.dup_envp;
 	if (g_msh.dup_envp == NULL)
@@ -59,9 +47,10 @@ void    free_all()
 	g_msh.dup_envp = NULL;
 }
 
-void	free_env()
+void	free_env(void)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (g_msh.my_env[i])
 	{

@@ -6,10 +6,11 @@
 /*   By: houazzan <houazzan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 20:59:28 by houazzan          #+#    #+#             */
-/*   Updated: 2022/06/15 14:27:13 by houazzan         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:21:21 by houazzan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
