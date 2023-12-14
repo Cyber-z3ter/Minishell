@@ -21,7 +21,7 @@ void	handle_sig(int sig)
 	i = 0;
 	if (sig == SIGINT && g_msh.signal == 0)
 	{
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		printf("\033[K$>\n");
 		rl_on_new_line();
 		rl_redisplay();
@@ -31,7 +31,7 @@ void	handle_sig(int sig)
 	if (sig == SIGQUIT)
 	{
 		rl_on_new_line();
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
